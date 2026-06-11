@@ -38,9 +38,14 @@
             <h2 class="section-title">প্রাথমিক তথ্য</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 
+                <!-- নাম আপডেট করা হয়েছে -->
                 <div>
-                    <label class="input-label">১. উপকারভোগীর নাম (বাংলা / ইংরেজি)</label>
-                    <input type="text" class="input-field" required placeholder="পুরো নাম লিখুন">
+                    <label class="input-label">১. (ক) উপকারভোগীর নাম (বাংলা)</label>
+                    <input type="text" class="input-field" required placeholder="বাংলায় পুরো নাম লিখুন">
+                </div>
+                <div>
+                    <label class="input-label">১. (খ) উপকারভোগীর নাম (ইংরেজি)</label>
+                    <input type="text" class="input-field" required placeholder="ইংরেজিতে পুরো নাম লিখুন">
                 </div>
                 
                 <div>
@@ -514,12 +519,23 @@
             <h2 class="section-title">ছবি আপলোড</h2>
             <p class="text-sm text-gray-500 mb-4">অনুগ্রহ করে স্পষ্ট ছবি আপলোড করুন।</p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- ৫টি ছবির জন্য নতুন গ্রিড লেআউট -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 
                 <div class="border-2 border-dashed border-blue-300 p-4 rounded-lg text-center hover:bg-blue-50 transition cursor-pointer">
                     <label class="cursor-pointer block">
                         <svg class="mx-auto h-10 w-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                         <span class="block text-sm font-semibold text-gray-700 mt-2">বাড়ির ছবি</span>
+                        <input type="file" accept="image/*" class="hidden">
+                        <span class="text-xs text-blue-600 mt-1 block border border-blue-200 rounded px-2 py-1 bg-white">ফাইল বাছুন</span>
+                    </label>
+                </div>
+
+                <!-- নতুন যুক্ত করা টয়লেটের ছবি আপলোডের অপশন -->
+                <div class="border-2 border-dashed border-blue-300 p-4 rounded-lg text-center hover:bg-blue-50 transition cursor-pointer">
+                    <label class="cursor-pointer block">
+                        <svg class="mx-auto h-10 w-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        <span class="block text-sm font-semibold text-gray-700 mt-2">টয়লেটের ছবি</span>
                         <input type="file" accept="image/*" class="hidden">
                         <span class="text-xs text-blue-600 mt-1 block border border-blue-200 rounded px-2 py-1 bg-white">ফাইল বাছুন</span>
                     </label>
