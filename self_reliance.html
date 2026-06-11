@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্বাবলম্বী প্রকল্প-২৬ আবেদন ফর্ম</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans Bengali', sans-serif; background-color: #f1f5f9; }
+        .hidden-section { display: none !important; }
+        .form-section { background: #ffffff; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e2e8f0; }
+        .section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #bfdbfe; padding-bottom: 0.5rem; margin-bottom: 1.25rem; }
+        .input-label { display: block; font-size: 0.875rem; font-weight: 600; color: #334155; margin-bottom: 0.375rem; }
+        .input-field { width: 100%; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.625rem 0.75rem; font-size: 0.875rem; outline: none; transition: border-color 0.2s; background-color: #f8fafc; }
+        .input-field:focus { border-color: #3b82f6; background-color: #ffffff; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .radio-group { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 0.25rem; }
+        .radio-item { display: flex; align-items: center; gap: 0.375rem; cursor: pointer; font-size: 0.875rem; }
+        .hint-text { font-size: 0.75rem; color: #64748b; margin-top: 0.25rem; font-style: italic; }
+        
+        .custom-table th { background-color: #f1f5f9; text-align: left; padding: 0.75rem; font-size: 0.875rem; font-weight: 600; color: #475569; border: 1px solid #e2e8f0; }
+        .custom-table td { padding: 0.5rem; border: 1px solid #e2e8f0; }
+    </style>
+</head>
+<body class="p-3 md:p-6">
+
+<div class="max-w-5xl mx-auto">
+    <!-- Header -->
+    <div class="bg-blue-800 text-white p-6 rounded-t-xl text-center shadow-lg">
+        <h1 class="text-2xl md:text-3xl font-bold tracking-wide">স্বাবলম্বী প্রকল্প-২৬</h1>
+        <p class="mt-2 text-blue-200 text-sm md:text-base">অনুগ্রহ করে সঠিক তথ্য দিয়ে ফর্মটি পূরণ করুন</p>
+    </div>
+
+    <form class="bg-gray-50 p-3 md:p-6 rounded-b-xl shadow-lg border-x border-b border-gray-200" id="swabolombiForm" onsubmit="event.preventDefault(); alert('ফর্মটি সফলভাবে সাবমিট হয়েছে!');">
+
+        <!-- ================= প্রাথমিক তথ্য ================= -->
+        <div class="form-section">
+            <h2 class="section-title">প্রাথমিক তথ্য</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                
+                <div>
+                    <label class="input-label">১. উপকারভোগীর নাম (বাংলা / ইংরেজি)</label>
+                    <input type="text" class="input-field" required placeholder="পুরো নাম লিখুন">
+                </div>
+                
+                <div>
+                    <label class="input-label">২. জাতীয় পরিচয়পত্র/ জন্ম সনদ</label>
+                    <input type="text" pattern="^(\d{10}|\d{13}|\d{17})$" class="input-field" required placeholder="১০, ১৩ বা ১৭ ডিজিট">
+                </div>
+
+                <div>
+                    <label class="input-label">৩. জন্ম তারিখ</label>
+                    <input type="date" id="dob" class="input-field" required onchange="calculateAge()">
+                </div>
+
+                <div>
+                    <label class="input-label">৪. বয়স</label>
+                    <input type="text" id="age" class="input-field bg-gray-200 cursor-not-allowed" readonly placeholder="অটো ক্যালকুলেট">
+                </div>
+
+                <div>
+                    <label class="input-label">৫. মোবাইল নম্বর</label>
+                    <input type="tel" class="input-field" required placeholder="01XXXXXXXXX">
+                </div>
+
+                <div>
+                    <label class="input-label">৬. সেকেন্ডারি মোবাইল নম্বর</label>
+                    <p class="hint-text mb-1">আপনার মোবাইল বন্ধ থাকলেও যাকে ফোন দিলে আপনাকে পাওয়া যাবে</p>
+                    <input type="tel" class="input-field" placeholder="01XXXXXXXXX">
+                </div>
+
+                <div>
+                    <label class="input-label">৭. লিঙ্গ</label>
+                    <select class="input-field" required>
+                        <option value="">নির্বাচন করুন</option>
+                        <option>পুরুষ</option>
+                        <option>মহিলা</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">৮. ধর্ম</label>
+                    <select class="input-field" required>
+                        <option value="">নির্বাচন করুন</option>
+                        <option>ইসলাম</option>
+                        <option>হিন্দু</option>
+                        <option>খ্রিস্টান</option>
+                        <option>বৌদ্ধ</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">৯. বৈবাহিক অবস্থা</label>
+                    <select class="input-field" required>
+                        <option value="">নির্বাচন করুন</option>
+                        <option>বিবাহিত</option>
+                        <option>অবিবাহিত</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">১২. শিক্ষাগত যোগ্যতা</label>
+                    <select class="input-field" required>
+                        <option value="">নির্বাচন করুন</option>
+                        <option>নিরক্ষর</option>
+                        <option>প্রাথমিক অসম্পূর্ণ</option>
+                        <option>প্রাথমিক সম্পূর্ণ</option>
+                        <option>মাধ্যমিক অসম্পূর্ণ</option>
+                        <option>ইবতেদায়ী</option>
+                        <option>দাখিল</option>
+                        <option>আলিম</option>
+                        <option>ফাজিল</option>
+                        <option>কামিল</option>
+                        <option>হিফজুল কুরআন</option>
+                        <option>প্রাথমিক শিক্ষা</option>
+                        <option>SSC সমমান</option>
+                        <option>HSC সমমান</option>
+                        <option>স্নাতক (Bachelor's) সমমান</option>
+                        <option>স্নাতকোত্তর (Master's) সমমান</option>
+                        <option>মুতাওয়াসসিতা</option>
+                        <option>সানাবিয়া উলইয়া</option>
+                        <option>ফযিলত</option>
+                        <option>দাওরায়ে হাদিস (তাকমিল)</option>
+                    </select>
+                </div>
+
+                <div class="md:col-span-2 bg-blue-50 p-3 rounded-lg border border-blue-100">
+                    <label class="input-label">১০. উপকারভোগীর কোনো দীর্ঘমেয়াদী রোগ বা শারীরিক প্রতিবন্ধকতা আছে কি না?</label>
+                    <div class="radio-group mb-2">
+                        <label class="radio-item"><input type="radio" name="disease" value="yes" onchange="toggleVis('diseaseDetails', true)"> হ্যাঁ</label>
+                        <label class="radio-item"><input type="radio" name="disease" value="no" onchange="toggleVis('diseaseDetails', false)" checked> না</label>
+                    </div>
+                    <div id="diseaseDetails" class="hidden-section">
+                        <input type="text" class="input-field" placeholder="কী ধরণের রোগ বা প্রতিবন্ধকতা?">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Address Section -->
+            <div class="mt-6">
+                <label class="input-label text-lg border-b pb-1 mb-3">১৩. ঠিকানা</label>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <input type="text" class="input-field" placeholder="বিভাগ" required>
+                    <input type="text" class="input-field" placeholder="জেলা" required>
+                    <input type="text" class="input-field" placeholder="উপজেলা" required>
+                    <input type="text" class="input-field" placeholder="ইউনিয়ন" required>
+                    <input type="text" class="input-field" placeholder="পোস্ট অফিস" required>
+                    <input type="text" class="input-field" placeholder="পোস্ট কোড" required>
+                    <input type="text" class="input-field" placeholder="গ্রাম" required>
+                    <input type="text" class="input-field" placeholder="বাড়ির নম্বর">
+                </div>
+            </div>
+
+            <!-- Location Section -->
+            <div class="mt-4">
+                <label class="input-label">১৪. লাইভ লোকেশন</label>
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <button type="button" onclick="getLocation()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium text-sm w-full sm:w-auto flex-shrink-0">লোকেশন সেট করুন</button>
+                    <input type="text" id="liveLocation" class="input-field bg-gray-100" readonly placeholder="অক্ষাংশ, দ্রাঘিমাংশ">
+                </div>
+            </div>
+
+            <!-- Family Members Section -->
+            <div class="mt-6 border-t pt-4">
+                <label class="input-label">১১. পরিবারের সদস্য সংখ্যা কতজন?</label>
+                <input type="number" id="familyCount" min="0" class="input-field md:w-1/3" oninput="generateFamilyTable()" placeholder="সংখ্যা লিখুন">
+                
+                <div id="familyTableContainer" class="hidden-section mt-4 overflow-x-auto w-full">
+                    <table class="w-full custom-table">
+                        <thead>
+                            <tr>
+                                <th>নাম</th>
+                                <th>উপকারভোগীর সাথে সম্পর্ক</th>
+                                <th>বয়স</th>
+                                <th>পেশা</th>
+                                <th>মাসিক ইনকাম (যদি থাকে)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="familyTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= অর্থনৈতিক অবস্থার তথ্য ================= -->
+        <div class="form-section">
+            <h2 class="section-title">অর্থনৈতিক অবস্থার তথ্য</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                
+                <div class="md:col-span-2">
+                    <label class="input-label">১৫. উপকারভোগীর পেশা</label>
+                    <select class="input-field md:w-1/2" onchange="toggleVis('businessType', this.value === 'ব্যবসা')">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>কৃষক</option>
+                        <option>দিনমজুর</option>
+                        <option>রিক্সা/ভ্যান চালক</option>
+                        <option>মৎস্যজীবী</option>
+                        <option>গৃহকর্মী</option>
+                        <option>বেকার</option>
+                        <option>শিক্ষার্থী</option>
+                        <option value="ব্যবসা">ব্যবসা</option>
+                        <option>অন্যান্য</option>
+                    </select>
+                    <div id="businessType" class="hidden-section mt-2 md:w-1/2">
+                        <input type="text" class="input-field" placeholder="কী ধরণের ব্যবসা?">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="input-label">১৬. উপকারভোগীর মাসিক আয়</label>
+                    <input type="number" class="input-field" placeholder="টাকার পরিমাণ">
+                </div>
+                <div>
+                    <label class="input-label">১৭. উপকারভোগীর মাসিক ব্যয়</label>
+                    <input type="number" class="input-field" placeholder="টাকার পরিমাণ">
+                </div>
+
+                <div class="md:col-span-2 bg-gray-50 p-4 border rounded-lg">
+                    <label class="input-label">১৮. উপকারভোগীর নিজস্ব বাড়ি আছে?</label>
+                    <div class="radio-group mb-3">
+                        <label class="radio-item"><input type="radio" name="hasHouse" value="yes" onchange="toggleHouseDetails('yes')"> হ্যাঁ</label>
+                        <label class="radio-item"><input type="radio" name="hasHouse" value="no" onchange="toggleHouseDetails('no')" checked> না</label>
+                    </div>
+                    
+                    <div id="houseDetailsYes" class="hidden-section grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="input-label text-xs">বসতবাড়ির ধরণ কেমন?</label>
+                            <select class="input-field">
+                                <option value="">নির্বাচন করুন</option>
+                                <option>কাঁচা ঘর</option>
+                                <option>সেমিপাকা ঘর</option>
+                                <option>পাকা ঘর</option>
+                                <option>টিনশেড ঘর</option>
+                                <option>বাঁশের ঘর</option>
+                                <option>ছনের ঘর</option>
+                                <option>অন্যান্য</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="input-label text-xs">বসতবাড়ির জায়গার পরিমাণ কত?</label>
+                            <input type="text" class="input-field" placeholder="শতাংশ">
+                        </div>
+                    </div>
+                    
+                    <div id="houseDetailsNo" class="hidden-section">
+                        <label class="input-label text-xs">উপকারভোগী কোথায় থাকে?</label>
+                        <select class="input-field md:w-1/2">
+                            <option value="">নির্বাচন করুন</option>
+                            <option>ভাড়া ঘরে</option>
+                            <option>অন্যের আশ্রয়ে</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="input-label">১৯. উপকারভোগীর টয়লেটের ধরণ</label>
+                    <select class="input-field">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>কাঁচা</option>
+                        <option>পাকা</option>
+                        <option>নেই</option>
+                    </select>
+                </div>
+
+                <div class="md:col-span-2 border-t pt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- কৃষি জমি -->
+                        <div>
+                            <label class="input-label">২০. উপকারভোগীর মোট কৃষি জমি আছে?</label>
+                            <div class="radio-group">
+                                <label class="radio-item"><input type="radio" name="agriLand" value="yes" onchange="toggleVis('agriLandAmount', true)"> হ্যাঁ</label>
+                                <label class="radio-item"><input type="radio" name="agriLand" value="no" onchange="toggleVis('agriLandAmount', false)" checked> না</label>
+                            </div>
+                            <input type="text" id="agriLandAmount" class="hidden-section input-field mt-2" placeholder="কৃষি জমির পরিমাণ">
+                        </div>
+
+                        <!-- লিজ জমি -->
+                        <div>
+                            <label class="input-label">২১. বর্গা/ লিজ/ বন্ধকী নেওয়া জমি আছে?</label>
+                            <div class="radio-group">
+                                <label class="radio-item"><input type="radio" name="leaseLand" value="yes" onchange="toggleVis('leaseLandDetails', true)"> হ্যাঁ</label>
+                                <label class="radio-item"><input type="radio" name="leaseLand" value="no" onchange="toggleVis('leaseLandDetails', false)" checked> না</label>
+                            </div>
+                            <div id="leaseLandDetails" class="hidden-section mt-2 space-y-2">
+                                <input type="text" class="input-field" placeholder="জমির পরিমাণ">
+                                <input type="number" class="input-field" placeholder="২২. কত টাকার বিপরীতে বন্ধক?">
+                                <input type="number" class="input-field" placeholder="২৩. কত টাকায় লিজ?">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- গবাদি পশু -->
+                <div class="md:col-span-2 bg-green-50 p-4 border border-green-100 rounded-lg">
+                    <label class="input-label mb-2">২৪. গবাদি পশুর পরিমাণঃ</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div><label class="text-xs text-gray-600 block">গরু</label><input type="number" class="input-field" placeholder="সংখ্যা"></div>
+                        <div><label class="text-xs text-gray-600 block">ছাগল</label><input type="number" class="input-field" placeholder="সংখ্যা"></div>
+                        <div><label class="text-xs text-gray-600 block">মহিষ</label><input type="number" class="input-field" placeholder="সংখ্যা"></div>
+                        <div><label class="text-xs text-gray-600 block">ভেড়া</label><input type="number" class="input-field" placeholder="সংখ্যা"></div>
+                    </div>
+                </div>
+
+                <!-- প্রবাস ও ভাতা -->
+                <div>
+                    <label class="input-label">২৫. পরিবারের কেউ প্রবাসে আছে?</label>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="expat" value="yes" onchange="toggleVis('remittance', true)"> হ্যাঁ</label>
+                        <label class="radio-item"><input type="radio" name="expat" value="no" onchange="toggleVis('remittance', false)" checked> না</label>
+                    </div>
+                    <input type="number" id="remittance" class="hidden-section input-field mt-2" placeholder="মাসে কত টাকা রেমিটেন্স পান?">
+                </div>
+
+                <div>
+                    <label class="input-label">২৬. প্রতিবন্ধী / বয়স্ক / বিধবা ভাতা পান?</label>
+                    <div class="radio-group">
+                        <label class="radio-item"><input type="radio" name="allowance" value="yes" onchange="toggleVis('allowanceAmount', true)"> হ্যাঁ</label>
+                        <label class="radio-item"><input type="radio" name="allowance" value="no" onchange="toggleVis('allowanceAmount', false)" checked> না</label>
+                    </div>
+                    <input type="number" id="allowanceAmount" class="hidden-section input-field mt-2" placeholder="মাসে কত টাকা পান?">
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= প্রকল্প সম্পর্কিত প্রশ্ন ================= -->
+        <div class="form-section">
+            <h2 class="section-title">প্রকল্প সম্পর্কিত প্রশ্ন</h2>
+            
+            <label class="input-label">২৭. আপনি কীভাবে স্বাবলম্বী হতে চান?</label>
+            <select class="input-field md:w-1/2 mb-4" onchange="toggleProjectSection(this.value)">
+                <option value="">নির্বাচন করুন</option>
+                <option value="ব্যবসা">ব্যবসা</option>
+                <option value="গবাদিপশু">গবাদিপশু পালন করে</option>
+            </select>
+
+            <div id="projBusiness" class="hidden-section bg-indigo-50 p-4 border border-indigo-100 rounded-lg space-y-3">
+                <label class="input-label">২৮. ব্যবসার বিস্তারিত</label>
+                <input type="text" class="input-field" placeholder="কী ধরণের ব্যবসা?">
+                <input type="text" class="input-field" placeholder="আগের ব্যবসার অভিজ্ঞতা কত বছরের?">
+                <textarea class="input-field" rows="3" placeholder="আপনার পরিকল্পনা বিস্তারিত জানান"></textarea>
+            </div>
+
+            <div id="projAnimal" class="hidden-section bg-teal-50 p-4 border border-teal-100 rounded-lg">
+                <label class="input-label">২৯. গবাদিপশু পালনের বিস্তারিত</label>
+                <textarea class="input-field" rows="3" placeholder="কীভাবে গবাদিপশু পালন করে স্বাবলম্বী হবেন পরিকল্পনা লিখুন"></textarea>
+            </div>
+        </div>
+
+        <!-- ================= ঋণ সম্পর্কিত তথ্য ================= -->
+        <div class="form-section bg-red-50 border-red-200">
+            <h2 class="section-title text-red-700 border-red-300">ঋণ সম্পর্কিত তথ্য</h2>
+            
+            <label class="input-label">৩০. আপনার কি কোনো ঋণ / কিস্তি আছে?</label>
+            <div class="radio-group mb-4">
+                <label class="radio-item"><input type="radio" name="hasLoan" value="yes" onchange="toggleVis('loanSection', true)"> হ্যাঁ</label>
+                <label class="radio-item"><input type="radio" name="hasLoan" value="no" onchange="toggleVis('loanSection', false)" checked> না</label>
+            </div>
+
+            <div id="loanSection" class="hidden-section grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="input-label">৩১. কোথা থেকে ঋণ নিয়েছেন?</label>
+                    <select class="input-field">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>এনজিও</option>
+                        <option>ব্যাংক লোন</option>
+                        <option>মহাজনী</option>
+                        <option>কর্জে হাসানা</option>
+                        <option>অন্যান্য</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="input-label">৩২. কী কারণে ঋণ নিয়েছিলেন?</label>
+                    <select class="input-field">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>দৈনন্দিন চাহিদা পূরণ</option>
+                        <option>শিক্ষা ব্যয়</option>
+                        <option>চিকিৎসা ব্যয়</option>
+                        <option>ব্যবসা</option>
+                        <option>কৃষি</option>
+                        <option>গবাদি পশু</option>
+                        <option>ঘর নির্মাণ / মেরামত</option>
+                        <option>ঋণ পরিশোধ</option>
+                        <option>মেয়ের বিয়ের জন্য</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="input-label">৩৩. যে উদ্দেশ্যে ঋণ নিয়েছিলেন তা কি পূরণ হয়েছে?</label>
+                    <select class="input-field">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>হ্যাঁ</option>
+                        <option>না</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="input-label">৩৪. মোট কত টাকা ঋণ নিয়েছেন?</label>
+                    <input type="number" class="input-field" placeholder="টাকার পরিমাণ">
+                </div>
+                <div>
+                    <label class="input-label">৩৫. মাসে কত টাকা কিস্তি দিতে হয়?</label>
+                    <input type="number" class="input-field" placeholder="টাকার পরিমাণ">
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= যাকাত মূল্যায়ন ================= -->
+        <div class="form-section">
+            <h2 class="section-title">যাকাত মূল্যায়ন</h2>
+            <p class="text-xs text-gray-500 mb-4 bg-yellow-50 p-2 border-l-4 border-yellow-400">হিন্ট: নিচের প্রশ্নগুলোর উত্তর হ্যাঁ হলে টাকার পরিমাণ লিখুন। না থাকলে ফাঁকা রাখুন বা ০ লিখুন।</p>
+            
+            <div class="space-y-4">
+                <!-- 36 -->
+                <div class="border-b pb-3">
+                    <label class="input-label">৩৬. আপনার কাছে কি জমানো নগদ টাকা আছে? <span class="font-normal text-xs text-gray-500">(হজ, বিবাহ, গৃহ-নির্মাণ ইত্যাদি যে উদ্দেশ্যেই হোক)</span></label>
+                    <div class="flex gap-4 mt-1">
+                        <div class="radio-group"><label><input type="radio" name="z36" onchange="toggleVis('z36amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z36" onchange="toggleVis('z36amt', false)" checked> না</label></div>
+                        <input type="number" id="z36amt" class="hidden-section input-field flex-1" placeholder="নগদ অর্থের পরিমাণ">
+                    </div>
+                </div>
+
+                <!-- 37 -->
+                <div class="border-b pb-3">
+                    <label class="input-label">৩৭. ব্যাংক বা কোন আর্থিক প্রতিষ্ঠানে কোন জমানো টাকা আছে?</label>
+                    <div class="flex gap-4 mt-1">
+                        <div class="radio-group"><label><input type="radio" name="z37" onchange="toggleVis('z37amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z37" onchange="toggleVis('z37amt', false)" checked> না</label></div>
+                        <input type="number" id="z37amt" class="hidden-section input-field flex-1" placeholder="জমাকৃত অর্থ">
+                    </div>
+                </div>
+
+                <!-- 38 Gold -->
+                <div class="bg-yellow-50/50 p-3 rounded border border-yellow-200">
+                    <label class="input-label text-yellow-800">৩৮. আপনার মালিকানাধীন কোনো স্বর্ণ আছে?</label>
+                    <div class="radio-group mb-2"><label><input type="radio" name="z38" onchange="toggleVis('z38sec', true)"> হ্যাঁ</label> <label><input type="radio" name="z38" onchange="toggleVis('z38sec', false)" checked> না</label></div>
+                    <div id="z38sec" class="hidden-section grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <input type="text" class="input-field" placeholder="মোট স্বর্ণের পরিমাণ (আনা/ভরি)">
+                        <input type="text" class="input-field" placeholder="স্বর্ণের ক্যারেট">
+                        <input type="text" class="input-field bg-gray-100" readonly value="প্রতি 'আনা' বাজারমূল্য: ৫০০০/- (Pre-defined)">
+                    </div>
+                </div>
+
+                <!-- 39 Silver -->
+                <div class="bg-gray-100/50 p-3 rounded border border-gray-300">
+                    <label class="input-label text-gray-700">৩৯. আপনার মালিকানাধীন কোনো রৌপ্য (রুপা) আছে?</label>
+                    <div class="radio-group mb-2"><label><input type="radio" name="z39" onchange="toggleVis('z39sec', true)"> হ্যাঁ</label> <label><input type="radio" name="z39" onchange="toggleVis('z39sec', false)" checked> না</label></div>
+                    <div id="z39sec" class="hidden-section grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <input type="text" class="input-field" placeholder="মোট রৌপ্যের পরিমাণ (আনা/ভরি)">
+                        <input type="text" class="input-field" placeholder="রুপার ক্যারেট">
+                        <input type="text" class="input-field bg-gray-100" readonly value="প্রতি 'আনা' বাজারমূল্য: ১০০/- (Pre-defined)">
+                    </div>
+                </div>
+
+                <!-- 40 to 48 loops -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    
+                    <div>
+                        <label class="input-label text-xs">৪০. সঞ্চয়পত্র, বন্ড, ডিবেঞ্চার ও ট্রেজারি বিল আছে?</label>
+                        <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z40" onchange="toggleVis('z40amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z40" onchange="toggleVis('z40amt', false)" checked> না</label></div></div>
+                        <input type="number" id="z40amt" class="hidden-section input-field mt-1" placeholder="ক্রয়মূল্য">
+                    </div>
+
+                    <div>
+                        <label class="input-label text-xs">৪১. বিক্রয়ের উদ্দেশ্যে স্টকে রাখা পণ্য/কাঁচামাল আছে?</label>
+                        <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z41" onchange="toggleVis('z41amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z41" onchange="toggleVis('z41amt', false)" checked> না</label></div></div>
+                        <input type="number" id="z41amt" class="hidden-section input-field mt-1" placeholder="বিক্রয়মূল্য">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="input-label">৪২. অন্যের কাছে পাওনা টাকার পরিমাণ</label>
+                        <input type="number" class="input-field md:w-1/2" placeholder="টাকার পরিমাণ (না থাকলে ০)">
+                    </div>
+
+                    <div>
+                        <label class="input-label text-xs">৪৩. জমি, বাড়ি বা বাহন থেকে ভাড়া/অতিরিক্ত ফসল পান?</label>
+                        <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z43" onchange="toggleVis('z43amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z43" onchange="toggleVis('z43amt', false)" checked> না</label></div></div>
+                        <input type="number" id="z43amt" class="hidden-section input-field mt-1" placeholder="বার্ষিক আয় (টাকায়)">
+                    </div>
+
+                    <div>
+                        <label class="input-label text-xs">৪৪. বিক্রির উদ্দেশ্যে কেনা কোনো জমি আছে কী?</label>
+                        <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z44" onchange="toggleVis('z44amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z44" onchange="toggleVis('z44amt', false)" checked> না</label></div></div>
+                        <input type="number" id="z44amt" class="hidden-section input-field mt-1" placeholder="বর্তমান বিক্রয়মূল্য">
+                    </div>
+
+                    <div>
+                        <label class="input-label text-xs">৪৫. জামানত/সিকিউরিটি মানি যা ফেরত পাবেন?</label>
+                        <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z45" onchange="toggleVis('z45amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z45" onchange="toggleVis('z45amt', false)" checked> না</label></div></div>
+                        <input type="number" id="z45amt" class="hidden-section input-field mt-1" placeholder="অর্থের পরিমাণ">
+                    </div>
+
+                    <div>
+                        <label class="input-label text-xs">৪৬. চিকিৎসা/সাংসারিক প্রয়োজনে কোনো ঋণ নেওয়া আছে?</label>
+                        <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z46" onchange="toggleVis('z46amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z46" onchange="toggleVis('z46amt', false)" checked> না</label></div></div>
+                        <input type="number" id="z46amt" class="hidden-section input-field mt-1" placeholder="ঋণের পরিমাণ">
+                    </div>
+
+                    <div>
+                        <label class="input-label text-xs">৪৭. অনাদায়ী দেনমোহরের পরিমাণ (যা এই বছর পরিশোধ করবেন)?</label>
+                        <input type="number" class="input-field mt-1" placeholder="টাকার পরিমাণ (না থাকলে ০)">
+                    </div>
+
+                    <div>
+                        <label class="input-label text-xs">৪৮. পরিবারের কোনো বকেয়া বিল/পরিশোধযোগ্য দেনা আছে?</label>
+                        <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z48" onchange="toggleVis('z48amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z48" onchange="toggleVis('z48amt', false)" checked> না</label></div></div>
+                        <input type="number" id="z48amt" class="hidden-section input-field mt-1" placeholder="অর্থের পরিমাণ">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ছবি আপলোড ================= -->
+        <div class="form-section">
+            <h2 class="section-title">ছবি আপলোড</h2>
+            <p class="text-sm text-gray-500 mb-4">অনুগ্রহ করে স্পষ্ট ছবি আপলোড করুন।</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                
+                <div class="border-2 border-dashed border-blue-300 p-4 rounded-lg text-center hover:bg-blue-50 transition cursor-pointer">
+                    <label class="cursor-pointer block">
+                        <svg class="mx-auto h-10 w-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <span class="block text-sm font-semibold text-gray-700 mt-2">বাড়ির ছবি</span>
+                        <input type="file" accept="image/*" class="hidden">
+                        <span class="text-xs text-blue-600 mt-1 block border border-blue-200 rounded px-2 py-1 bg-white">ফাইল বাছুন</span>
+                    </label>
+                </div>
+
+                <div class="border-2 border-dashed border-blue-300 p-4 rounded-lg text-center hover:bg-blue-50 transition cursor-pointer">
+                    <label class="cursor-pointer block">
+                        <svg class="mx-auto h-10 w-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        <span class="block text-sm font-semibold text-gray-700 mt-2">উপকারভোগীর ছবি</span>
+                        <input type="file" accept="image/*" class="hidden">
+                        <span class="text-xs text-blue-600 mt-1 block border border-blue-200 rounded px-2 py-1 bg-white">ফাইল বাছুন</span>
+                    </label>
+                </div>
+
+                <div class="border-2 border-dashed border-blue-300 p-4 rounded-lg text-center hover:bg-blue-50 transition cursor-pointer">
+                    <label class="cursor-pointer block">
+                        <svg class="mx-auto h-10 w-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        <span class="block text-sm font-semibold text-gray-700 mt-2">NID (প্রথম পৃষ্ঠা)</span>
+                        <input type="file" accept="image/*" class="hidden">
+                        <span class="text-xs text-blue-600 mt-1 block border border-blue-200 rounded px-2 py-1 bg-white">ফাইল বাছুন</span>
+                    </label>
+                </div>
+
+                <div class="border-2 border-dashed border-blue-300 p-4 rounded-lg text-center hover:bg-blue-50 transition cursor-pointer">
+                    <label class="cursor-pointer block">
+                        <svg class="mx-auto h-10 w-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        <span class="block text-sm font-semibold text-gray-700 mt-2">NID (দ্বিতীয় পৃষ্ঠা)</span>
+                        <input type="file" accept="image/*" class="hidden">
+                        <span class="text-xs text-blue-600 mt-1 block border border-blue-200 rounded px-2 py-1 bg-white">ফাইল বাছুন</span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-8 text-center pt-4 border-t border-gray-300">
+            <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg transition duration-300 text-lg w-full md:w-auto">
+                ফর্ম সাবমিট করুন
+            </button>
+        </div>
+
+    </form>
+</div>
+
+<!-- JavaScript functions -->
+<script>
+    function calculateAge() {
+        const dobInput = document.getElementById('dob').value;
+        if(dobInput){
+            const dob = new Date(dobInput);
+            const diff_ms = Date.now() - dob.getTime();
+            const age_dt = new Date(diff_ms); 
+            const age = Math.abs(age_dt.getUTCFullYear() - 1970);
+            document.getElementById('age').value = age + " বছর";
+        }
+    }
+
+    function toggleVis(id, show) {
+        const el = document.getElementById(id);
+        if(!el) return;
+        if(show) {
+            el.classList.remove('hidden-section');
+        } else {
+            el.classList.add('hidden-section');
+        }
+    }
+
+    function toggleHouseDetails(val) {
+        if(val === 'yes') {
+            document.getElementById('houseDetailsYes').classList.remove('hidden-section');
+            document.getElementById('houseDetailsNo').classList.add('hidden-section');
+        } else {
+            document.getElementById('houseDetailsYes').classList.add('hidden-section');
+            document.getElementById('houseDetailsNo').classList.remove('hidden-section');
+        }
+    }
+
+    function toggleProjectSection(val) {
+        document.getElementById('projBusiness').classList.add('hidden-section');
+        document.getElementById('projAnimal').classList.add('hidden-section');
+        if(val === 'ব্যবসা') document.getElementById('projBusiness').classList.remove('hidden-section');
+        if(val === 'গবাদিপশু') document.getElementById('projAnimal').classList.remove('hidden-section');
+    }
+
+    function generateFamilyTable() {
+        const count = parseInt(document.getElementById('familyCount').value) || 0;
+        const container = document.getElementById('familyTableContainer');
+        const tbody = document.getElementById('familyTableBody');
+        tbody.innerHTML = ''; 
+
+        if(count > 0) {
+            container.classList.remove('hidden-section');
+            const relOps = `<option value="">নির্বাচন করুন</option><option>স্বামী</option><option>স্ত্রী</option><option>বোন</option><option>ছেলে</option><option>মেয়ে</option><option>ভাই</option><option>মা</option><option>বাবা</option><option>দাদা</option><option>দাদী</option><option>শ্বশুর</option><option>শাশুড়ি</option><option>অন্যান্য</option>`;
+            
+            for(let i=0; i<count; i++) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><input type="text" class="input-field" placeholder="নাম"></td>
+                    <td><select class="input-field">${relOps}</select></td>
+                    <td><input type="number" class="input-field" placeholder="বয়স"></td>
+                    <td><input type="text" class="input-field" placeholder="পেশা"></td>
+                    <td><input type="number" class="input-field" placeholder="মাসিক ইনকাম"></td>
+                `;
+                tbody.appendChild(tr);
+            }
+        } else {
+            container.classList.add('hidden-section');
+        }
+    }
+
+    function getLocation() {
+        const locInput = document.getElementById('liveLocation');
+        if (navigator.geolocation) {
+            locInput.value = "লোকেশন খোঁজা হচ্ছে...";
+            navigator.geolocation.getCurrentPosition(function(position) {
+                locInput.value = position.coords.latitude + ", " + position.coords.longitude;
+            }, function(error) {
+                locInput.value = "লোকেশন পাওয়া যায়নি!";
+                alert("আপনার ডিভাইসের লোকেশন সার্ভিস বা জিপিএস অন করুন।");
+            });
+        } else {
+            locInput.value = "আপনার ব্রাউজার সাপোর্ট করে না।";
+        }
+    }
+</script>
+</body>
+</html>
