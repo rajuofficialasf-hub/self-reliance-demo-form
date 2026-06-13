@@ -38,44 +38,53 @@
             <h2 class="section-title">প্রাথমিক তথ্য</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 
-                <!-- নাম আপডেট করা হয়েছে -->
                 <div>
-                    <label class="input-label">১. (ক) উপকারভোগীর নাম (বাংলা)</label>
+                    <label class="input-label">উপকারভোগীর নাম (বাংলা)</label>
                     <input type="text" class="input-field" required placeholder="বাংলায় পুরো নাম লিখুন">
                 </div>
                 <div>
-                    <label class="input-label">১. (খ) উপকারভোগীর নাম (ইংরেজি)</label>
+                    <label class="input-label">উপকারভোগীর নাম (ইংরেজি)</label>
                     <input type="text" class="input-field" required placeholder="ইংরেজিতে পুরো নাম লিখুন">
+                </div>
+
+                <!-- নতুন যুক্ত করা ফিল্ড: পিতার নাম ও মাতার নাম -->
+                <div>
+                    <label class="input-label">পিতার নাম</label>
+                    <input type="text" class="input-field" required placeholder="পিতার নাম লিখুন">
+                </div>
+                <div>
+                    <label class="input-label">মাতার নাম</label>
+                    <input type="text" class="input-field" required placeholder="মাতার নাম লিখুন">
                 </div>
                 
                 <div>
-                    <label class="input-label">২. জাতীয় পরিচয়পত্র/ জন্ম সনদ</label>
+                    <label class="input-label">জাতীয় পরিচয়পত্র/ জন্ম সনদ</label>
                     <input type="text" pattern="^(\d{10}|\d{13}|\d{17})$" class="input-field" required placeholder="১০, ১৩ বা ১৭ ডিজিট">
                 </div>
 
                 <div>
-                    <label class="input-label">৩. জন্ম তারিখ</label>
+                    <label class="input-label">জন্ম তারিখ</label>
                     <input type="date" id="dob" class="input-field" required onchange="calculateAge()">
                 </div>
 
                 <div>
-                    <label class="input-label">৪. বয়স</label>
+                    <label class="input-label">বয়স</label>
                     <input type="text" id="age" class="input-field bg-gray-200 cursor-not-allowed" readonly placeholder="অটো ক্যালকুলেট">
                 </div>
 
                 <div>
-                    <label class="input-label">৫. মোবাইল নম্বর</label>
+                    <label class="input-label">মোবাইল নম্বর</label>
                     <input type="tel" class="input-field" required placeholder="01XXXXXXXXX">
                 </div>
 
                 <div>
-                    <label class="input-label">৬. সেকেন্ডারি মোবাইল নম্বর</label>
+                    <label class="input-label">সেকেন্ডারি মোবাইল নম্বর</label>
                     <p class="hint-text mb-1">আপনার মোবাইল বন্ধ থাকলেও যাকে ফোন দিলে আপনাকে পাওয়া যাবে</p>
                     <input type="tel" class="input-field" placeholder="01XXXXXXXXX">
                 </div>
 
                 <div>
-                    <label class="input-label">৭. লিঙ্গ</label>
+                    <label class="input-label">লিঙ্গ</label>
                     <select class="input-field" required>
                         <option value="">নির্বাচন করুন</option>
                         <option>পুরুষ</option>
@@ -84,7 +93,7 @@
                 </div>
 
                 <div>
-                    <label class="input-label">৮. ধর্ম</label>
+                    <label class="input-label">ধর্ম</label>
                     <select class="input-field" required>
                         <option value="">নির্বাচন করুন</option>
                         <option>ইসলাম</option>
@@ -95,7 +104,7 @@
                 </div>
 
                 <div>
-                    <label class="input-label">৯. বৈবাহিক অবস্থা</label>
+                    <label class="input-label">বৈবাহিক অবস্থা</label>
                     <select class="input-field" required>
                         <option value="">নির্বাচন করুন</option>
                         <option>বিবাহিত</option>
@@ -104,7 +113,7 @@
                 </div>
 
                 <div>
-                    <label class="input-label">১২. শিক্ষাগত যোগ্যতা</label>
+                    <label class="input-label">শিক্ষাগত যোগ্যতা</label>
                     <select class="input-field" required>
                         <option value="">নির্বাচন করুন</option>
                         <option>নিরক্ষর</option>
@@ -130,7 +139,7 @@
                 </div>
 
                 <div class="md:col-span-2 bg-blue-50 p-3 rounded-lg border border-blue-100">
-                    <label class="input-label">১০. উপকারভোগীর কোনো দীর্ঘমেয়াদী রোগ বা শারীরিক প্রতিবন্ধকতা আছে কি না?</label>
+                    <label class="input-label">উপকারভোগীর কোনো দীর্ঘমেয়াদী রোগ বা শারীরিক প্রতিবন্ধকতা আছে কি না?</label>
                     <div class="radio-group mb-2">
                         <label class="radio-item"><input type="radio" name="disease" value="yes" onchange="toggleVis('diseaseDetails', true)"> হ্যাঁ</label>
                         <label class="radio-item"><input type="radio" name="disease" value="no" onchange="toggleVis('diseaseDetails', false)" checked> না</label>
@@ -144,7 +153,7 @@
 
             <!-- Address Section -->
             <div class="mt-6">
-                <label class="input-label text-lg border-b pb-1 mb-3">১৩. ঠিকানা</label>
+                <label class="input-label text-lg border-b pb-1 mb-3">ঠিকানা</label>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                     <input type="text" class="input-field" placeholder="বিভাগ" required>
                     <input type="text" class="input-field" placeholder="জেলা" required>
@@ -159,7 +168,7 @@
 
             <!-- Location Section -->
             <div class="mt-4">
-                <label class="input-label">১৪. লাইভ লোকেশন</label>
+                <label class="input-label">লাইভ লোকেশন</label>
                 <div class="flex flex-col sm:flex-row gap-2">
                     <button type="button" onclick="getLocation()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium text-sm w-full sm:w-auto flex-shrink-0">লোকেশন সেট করুন</button>
                     <input type="text" id="liveLocation" class="input-field bg-gray-100" readonly placeholder="অক্ষাংশ, দ্রাঘিমাংশ">
@@ -168,7 +177,7 @@
 
             <!-- Family Members Section -->
             <div class="mt-6 border-t pt-4">
-                <label class="input-label">১১. পরিবারের সদস্য সংখ্যা কতজন?</label>
+                <label class="input-label">পরিবারের সদস্য সংখ্যা কতজন?</label>
                 <input type="number" id="familyCount" min="0" class="input-field md:w-1/3" oninput="generateFamilyTable()" placeholder="সংখ্যা লিখুন">
                 
                 <div id="familyTableContainer" class="hidden-section mt-4 overflow-x-auto w-full">
@@ -194,7 +203,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 
                 <div class="md:col-span-2">
-                    <label class="input-label">১৫. উপকারভোগীর পেশা</label>
+                    <label class="input-label">উপকারভোগীর পেশা</label>
                     <select class="input-field md:w-1/2" onchange="toggleVis('businessType', this.value === 'ব্যবসা')">
                         <option value="">নির্বাচন করুন</option>
                         <option>কৃষক</option>
@@ -213,16 +222,16 @@
                 </div>
 
                 <div>
-                    <label class="input-label">১৬. উপকারভোগীর মাসিক আয়</label>
+                    <label class="input-label">উপকারভোগীর মাসিক আয়</label>
                     <input type="number" class="input-field" placeholder="টাকার পরিমাণ">
                 </div>
                 <div>
-                    <label class="input-label">১৭. উপকারভোগীর মাসিক ব্যয়</label>
+                    <label class="input-label">উপকারভোগীর মাসিক ব্যয়</label>
                     <input type="number" class="input-field" placeholder="টাকার পরিমাণ">
                 </div>
 
                 <div class="md:col-span-2 bg-gray-50 p-4 border rounded-lg">
-                    <label class="input-label">১৮. উপকারভোগীর নিজস্ব বাড়ি আছে?</label>
+                    <label class="input-label">উপকারভোগীর নিজস্ব বাড়ি আছে?</label>
                     <div class="radio-group mb-3">
                         <label class="radio-item"><input type="radio" name="hasHouse" value="yes" onchange="toggleHouseDetails('yes')"> হ্যাঁ</label>
                         <label class="radio-item"><input type="radio" name="hasHouse" value="no" onchange="toggleHouseDetails('no')" checked> না</label>
@@ -259,7 +268,7 @@
                 </div>
 
                 <div>
-                    <label class="input-label">১৯. উপকারভোগীর টয়লেটের ধরণ</label>
+                    <label class="input-label">উপকারভোগীর টয়লেটের ধরণ</label>
                     <select class="input-field">
                         <option value="">নির্বাচন করুন</option>
                         <option>কাঁচা</option>
@@ -272,7 +281,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <!-- কৃষি জমি -->
                         <div>
-                            <label class="input-label">২০. উপকারভোগীর মোট কৃষি জমি আছে?</label>
+                            <label class="input-label">উপকারভোগীর মোট কৃষি জমি আছে?</label>
                             <div class="radio-group">
                                 <label class="radio-item"><input type="radio" name="agriLand" value="yes" onchange="toggleVis('agriLandAmount', true)"> হ্যাঁ</label>
                                 <label class="radio-item"><input type="radio" name="agriLand" value="no" onchange="toggleVis('agriLandAmount', false)" checked> না</label>
@@ -282,15 +291,15 @@
 
                         <!-- লিজ জমি -->
                         <div>
-                            <label class="input-label">২১. বর্গা/ লিজ/ বন্ধকী নেওয়া জমি আছে?</label>
+                            <label class="input-label">বর্গা/ লিজ/ বন্ধকী নেওয়া জমি আছে?</label>
                             <div class="radio-group">
                                 <label class="radio-item"><input type="radio" name="leaseLand" value="yes" onchange="toggleVis('leaseLandDetails', true)"> হ্যাঁ</label>
                                 <label class="radio-item"><input type="radio" name="leaseLand" value="no" onchange="toggleVis('leaseLandDetails', false)" checked> না</label>
                             </div>
                             <div id="leaseLandDetails" class="hidden-section mt-2 space-y-2">
                                 <input type="text" class="input-field" placeholder="জমির পরিমাণ">
-                                <input type="number" class="input-field" placeholder="২২. কত টাকার বিপরীতে বন্ধক?">
-                                <input type="number" class="input-field" placeholder="২৩. কত টাকায় লিজ?">
+                                <input type="number" class="input-field" placeholder="কত টাকার বিপরীতে বন্ধক?">
+                                <input type="number" class="input-field" placeholder="কত টাকায় লিজ?">
                             </div>
                         </div>
                     </div>
@@ -298,7 +307,7 @@
 
                 <!-- গবাদি পশু -->
                 <div class="md:col-span-2 bg-green-50 p-4 border border-green-100 rounded-lg">
-                    <label class="input-label mb-2">২৪. গবাদি পশুর পরিমাণঃ</label>
+                    <label class="input-label mb-2">গবাদি পশুর পরিমাণঃ</label>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                         <div><label class="text-xs text-gray-600 block">গরু</label><input type="number" class="input-field" placeholder="সংখ্যা"></div>
                         <div><label class="text-xs text-gray-600 block">ছাগল</label><input type="number" class="input-field" placeholder="সংখ্যা"></div>
@@ -309,7 +318,7 @@
 
                 <!-- প্রবাস ও ভাতা -->
                 <div>
-                    <label class="input-label">২৫. পরিবারের কেউ প্রবাসে আছে?</label>
+                    <label class="input-label">পরিবারের কেউ প্রবাসে আছে?</label>
                     <div class="radio-group">
                         <label class="radio-item"><input type="radio" name="expat" value="yes" onchange="toggleVis('remittance', true)"> হ্যাঁ</label>
                         <label class="radio-item"><input type="radio" name="expat" value="no" onchange="toggleVis('remittance', false)" checked> না</label>
@@ -318,7 +327,7 @@
                 </div>
 
                 <div>
-                    <label class="input-label">২৬. প্রতিবন্ধী / বয়স্ক / বিধবা ভাতা পান?</label>
+                    <label class="input-label">প্রতিবন্ধী / বয়স্ক / বিধবা ভাতা পান?</label>
                     <div class="radio-group">
                         <label class="radio-item"><input type="radio" name="allowance" value="yes" onchange="toggleVis('allowanceAmount', true)"> হ্যাঁ</label>
                         <label class="radio-item"><input type="radio" name="allowance" value="no" onchange="toggleVis('allowanceAmount', false)" checked> না</label>
@@ -333,7 +342,7 @@
         <div class="form-section">
             <h2 class="section-title">প্রকল্প সম্পর্কিত প্রশ্ন</h2>
             
-            <label class="input-label">২৭. আপনি কীভাবে স্বাবলম্বী হতে চান?</label>
+            <label class="input-label">আপনি কীভাবে স্বাবলম্বী হতে চান?</label>
             <select class="input-field md:w-1/2 mb-4" onchange="toggleProjectSection(this.value)">
                 <option value="">নির্বাচন করুন</option>
                 <option value="ব্যবসা">ব্যবসা</option>
@@ -341,14 +350,14 @@
             </select>
 
             <div id="projBusiness" class="hidden-section bg-indigo-50 p-4 border border-indigo-100 rounded-lg space-y-3">
-                <label class="input-label">২৮. ব্যবসার বিস্তারিত</label>
+                <label class="input-label">ব্যবসার বিস্তারিত</label>
                 <input type="text" class="input-field" placeholder="কী ধরণের ব্যবসা?">
                 <input type="text" class="input-field" placeholder="আগের ব্যবসার অভিজ্ঞতা কত বছরের?">
                 <textarea class="input-field" rows="3" placeholder="আপনার পরিকল্পনা বিস্তারিত জানান"></textarea>
             </div>
 
             <div id="projAnimal" class="hidden-section bg-teal-50 p-4 border border-teal-100 rounded-lg">
-                <label class="input-label">২৯. গবাদিপশু পালনের বিস্তারিত</label>
+                <label class="input-label">গবাদিপশু পালনের বিস্তারিত</label>
                 <textarea class="input-field" rows="3" placeholder="কীভাবে গবাদিপশু পালন করে স্বাবলম্বী হবেন পরিকল্পনা লিখুন"></textarea>
             </div>
         </div>
@@ -357,7 +366,7 @@
         <div class="form-section bg-red-50 border-red-200">
             <h2 class="section-title text-red-700 border-red-300">ঋণ সম্পর্কিত তথ্য</h2>
             
-            <label class="input-label">৩০. আপনার কি কোনো ঋণ / কিস্তি আছে?</label>
+            <label class="input-label">আপনার কি কোনো ঋণ / কিস্তি আছে?</label>
             <div class="radio-group mb-4">
                 <label class="radio-item"><input type="radio" name="hasLoan" value="yes" onchange="toggleVis('loanSection', true)"> হ্যাঁ</label>
                 <label class="radio-item"><input type="radio" name="hasLoan" value="no" onchange="toggleVis('loanSection', false)" checked> না</label>
@@ -365,7 +374,7 @@
 
             <div id="loanSection" class="hidden-section grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label class="input-label">৩১. কোথা থেকে ঋণ নিয়েছেন?</label>
+                    <label class="input-label">কোথা থেকে ঋণ নিয়েছেন?</label>
                     <select class="input-field">
                         <option value="">নির্বাচন করুন</option>
                         <option>এনজিও</option>
@@ -376,7 +385,7 @@
                     </select>
                 </div>
                 <div>
-                    <label class="input-label">৩২. কী কারণে ঋণ নিয়েছিলেন?</label>
+                    <label class="input-label">কী কারণে ঋণ নিয়েছিলেন?</label>
                     <select class="input-field">
                         <option value="">নির্বাচন করুন</option>
                         <option>দৈনন্দিন চাহিদা পূরণ</option>
@@ -391,7 +400,7 @@
                     </select>
                 </div>
                 <div>
-                    <label class="input-label">৩৩. যে উদ্দেশ্যে ঋণ নিয়েছিলেন তা কি পূরণ হয়েছে?</label>
+                    <label class="input-label">যে উদ্দেশ্যে ঋণ নিয়েছিলেন তা কি পূরণ হয়েছে?</label>
                     <select class="input-field">
                         <option value="">নির্বাচন করুন</option>
                         <option>হ্যাঁ</option>
@@ -399,11 +408,11 @@
                     </select>
                 </div>
                 <div>
-                    <label class="input-label">৩৪. মোট কত টাকা ঋণ নিয়েছেন?</label>
+                    <label class="input-label">মোট কত টাকা ঋণ নিয়েছেন?</label>
                     <input type="number" class="input-field" placeholder="টাকার পরিমাণ">
                 </div>
                 <div>
-                    <label class="input-label">৩৫. মাসে কত টাকা কিস্তি দিতে হয়?</label>
+                    <label class="input-label">মাসে কত টাকা কিস্তি দিতে হয়?</label>
                     <input type="number" class="input-field" placeholder="টাকার পরিমাণ">
                 </div>
             </div>
@@ -415,27 +424,25 @@
             <p class="text-xs text-gray-500 mb-4 bg-yellow-50 p-2 border-l-4 border-yellow-400">হিন্ট: নিচের প্রশ্নগুলোর উত্তর হ্যাঁ হলে টাকার পরিমাণ লিখুন। না থাকলে ফাঁকা রাখুন বা ০ লিখুন।</p>
             
             <div class="space-y-4">
-                <!-- 36 -->
                 <div class="border-b pb-3">
-                    <label class="input-label">৩৬. আপনার কাছে কি জমানো নগদ টাকা আছে? <span class="font-normal text-xs text-gray-500">(হজ, বিবাহ, গৃহ-নির্মাণ ইত্যাদি যে উদ্দেশ্যেই হোক)</span></label>
+                    <label class="input-label">আপনার কাছে কি জমানো নগদ টাকা আছে? <span class="font-normal text-xs text-gray-500">(হজ, বিবাহ, গৃহ-নির্মাণ ইত্যাদি যে উদ্দেশ্যেই হোক)</span></label>
                     <div class="flex gap-4 mt-1">
                         <div class="radio-group"><label><input type="radio" name="z36" onchange="toggleVis('z36amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z36" onchange="toggleVis('z36amt', false)" checked> না</label></div>
                         <input type="number" id="z36amt" class="hidden-section input-field flex-1" placeholder="নগদ অর্থের পরিমাণ">
                     </div>
                 </div>
 
-                <!-- 37 -->
                 <div class="border-b pb-3">
-                    <label class="input-label">৩৭. ব্যাংক বা কোন আর্থিক প্রতিষ্ঠানে কোন জমানো টাকা আছে?</label>
+                    <label class="input-label">ব্যাংক বা কোন আর্থিক প্রতিষ্ঠানে কোন জমানো টাকা আছে?</label>
                     <div class="flex gap-4 mt-1">
                         <div class="radio-group"><label><input type="radio" name="z37" onchange="toggleVis('z37amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z37" onchange="toggleVis('z37amt', false)" checked> না</label></div>
                         <input type="number" id="z37amt" class="hidden-section input-field flex-1" placeholder="জমাকৃত অর্থ">
                     </div>
                 </div>
 
-                <!-- 38 Gold -->
+                <!-- Gold -->
                 <div class="bg-yellow-50/50 p-3 rounded border border-yellow-200">
-                    <label class="input-label text-yellow-800">৩৮. আপনার মালিকানাধীন কোনো স্বর্ণ আছে?</label>
+                    <label class="input-label text-yellow-800">আপনার মালিকানাধীন কোনো স্বর্ণ আছে?</label>
                     <div class="radio-group mb-2"><label><input type="radio" name="z38" onchange="toggleVis('z38sec', true)"> হ্যাঁ</label> <label><input type="radio" name="z38" onchange="toggleVis('z38sec', false)" checked> না</label></div>
                     <div id="z38sec" class="hidden-section grid grid-cols-1 sm:grid-cols-3 gap-2">
                         <input type="text" class="input-field" placeholder="মোট স্বর্ণের পরিমাণ (আনা/ভরি)">
@@ -444,9 +451,9 @@
                     </div>
                 </div>
 
-                <!-- 39 Silver -->
+                <!-- Silver -->
                 <div class="bg-gray-100/50 p-3 rounded border border-gray-300">
-                    <label class="input-label text-gray-700">৩৯. আপনার মালিকানাধীন কোনো রৌপ্য (রুপা) আছে?</label>
+                    <label class="input-label text-gray-700">আপনার মালিকানাধীন কোনো রৌপ্য (রুপা) আছে?</label>
                     <div class="radio-group mb-2"><label><input type="radio" name="z39" onchange="toggleVis('z39sec', true)"> হ্যাঁ</label> <label><input type="radio" name="z39" onchange="toggleVis('z39sec', false)" checked> না</label></div>
                     <div id="z39sec" class="hidden-section grid grid-cols-1 sm:grid-cols-3 gap-2">
                         <input type="text" class="input-field" placeholder="মোট রৌপ্যের পরিমাণ (আনা/ভরি)">
@@ -455,57 +462,56 @@
                     </div>
                 </div>
 
-                <!-- 40 to 48 loops -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                     
                     <div>
-                        <label class="input-label text-xs">৪০. সঞ্চয়পত্র, বন্ড, ডিবেঞ্চার ও ট্রেজারি বিল আছে?</label>
+                        <label class="input-label text-xs">সঞ্চয়পত্র, বন্ড, ডিবেঞ্চার ও ট্রেজারি বিল আছে?</label>
                         <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z40" onchange="toggleVis('z40amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z40" onchange="toggleVis('z40amt', false)" checked> না</label></div></div>
                         <input type="number" id="z40amt" class="hidden-section input-field mt-1" placeholder="ক্রয়মূল্য">
                     </div>
 
                     <div>
-                        <label class="input-label text-xs">৪১. বিক্রয়ের উদ্দেশ্যে স্টকে রাখা পণ্য/কাঁচামাল আছে?</label>
+                        <label class="input-label text-xs">বিক্রয়ের উদ্দেশ্যে স্টকে রাখা পণ্য/কাঁচামাল আছে?</label>
                         <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z41" onchange="toggleVis('z41amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z41" onchange="toggleVis('z41amt', false)" checked> না</label></div></div>
                         <input type="number" id="z41amt" class="hidden-section input-field mt-1" placeholder="বিক্রয়মূল্য">
                     </div>
 
                     <div class="md:col-span-2">
-                        <label class="input-label">৪২. অন্যের কাছে পাওনা টাকার পরিমাণ</label>
+                        <label class="input-label">অন্যের কাছে পাওনা টাকার পরিমাণ</label>
                         <input type="number" class="input-field md:w-1/2" placeholder="টাকার পরিমাণ (না থাকলে ০)">
                     </div>
 
                     <div>
-                        <label class="input-label text-xs">৪৩. জমি, বাড়ি বা বাহন থেকে ভাড়া/অতিরিক্ত ফসল পান?</label>
+                        <label class="input-label text-xs">জমি, বাড়ি বা বাহন থেকে ভাড়া/অতিরিক্ত ফসল পান?</label>
                         <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z43" onchange="toggleVis('z43amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z43" onchange="toggleVis('z43amt', false)" checked> না</label></div></div>
                         <input type="number" id="z43amt" class="hidden-section input-field mt-1" placeholder="বার্ষিক আয় (টাকায়)">
                     </div>
 
                     <div>
-                        <label class="input-label text-xs">৪৪. বিক্রির উদ্দেশ্যে কেনা কোনো জমি আছে কী?</label>
+                        <label class="input-label text-xs">বিক্রির উদ্দেশ্যে কেনা কোনো জমি আছে কী?</label>
                         <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z44" onchange="toggleVis('z44amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z44" onchange="toggleVis('z44amt', false)" checked> না</label></div></div>
                         <input type="number" id="z44amt" class="hidden-section input-field mt-1" placeholder="বর্তমান বিক্রয়মূল্য">
                     </div>
 
                     <div>
-                        <label class="input-label text-xs">৪৫. জামানত/সিকিউরিটি মানি যা ফেরত পাবেন?</label>
+                        <label class="input-label text-xs">জামানত/সিকিউরিটি মানি যা ফেরত পাবেন?</label>
                         <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z45" onchange="toggleVis('z45amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z45" onchange="toggleVis('z45amt', false)" checked> না</label></div></div>
                         <input type="number" id="z45amt" class="hidden-section input-field mt-1" placeholder="অর্থের পরিমাণ">
                     </div>
 
                     <div>
-                        <label class="input-label text-xs">৪৬. চিকিৎসা/সাংসারিক প্রয়োজনে কোনো ঋণ নেওয়া আছে?</label>
+                        <label class="input-label text-xs">চিকিৎসা/সাংসারিক প্রয়োজনে কোনো ঋণ নেওয়া আছে?</label>
                         <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z46" onchange="toggleVis('z46amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z46" onchange="toggleVis('z46amt', false)" checked> না</label></div></div>
                         <input type="number" id="z46amt" class="hidden-section input-field mt-1" placeholder="ঋণের পরিমাণ">
                     </div>
 
                     <div>
-                        <label class="input-label text-xs">৪৭. অনাদায়ী দেনমোহরের পরিমাণ (যা এই বছর পরিশোধ করবেন)?</label>
+                        <label class="input-label text-xs">অনাদায়ী দেনমোহরের পরিমাণ (যা এই বছর পরিশোধ করবেন)?</label>
                         <input type="number" class="input-field mt-1" placeholder="টাকার পরিমাণ (না থাকলে ০)">
                     </div>
 
                     <div>
-                        <label class="input-label text-xs">৪৮. পরিবারের কোনো বকেয়া বিল/পরিশোধযোগ্য দেনা আছে?</label>
+                        <label class="input-label text-xs">পরিবারের কোনো বকেয়া বিল/পরিশোধযোগ্য দেনা আছে?</label>
                         <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z48" onchange="toggleVis('z48amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z48" onchange="toggleVis('z48amt', false)" checked> না</label></div></div>
                         <input type="number" id="z48amt" class="hidden-section input-field mt-1" placeholder="অর্থের পরিমাণ">
                     </div>
@@ -519,7 +525,6 @@
             <h2 class="section-title">ছবি আপলোড</h2>
             <p class="text-sm text-gray-500 mb-4">অনুগ্রহ করে স্পষ্ট ছবি আপলোড করুন।</p>
             
-            <!-- ৫টি ছবির জন্য নতুন গ্রিড লেআউট -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 
                 <div class="border-2 border-dashed border-blue-300 p-4 rounded-lg text-center hover:bg-blue-50 transition cursor-pointer">
@@ -531,7 +536,6 @@
                     </label>
                 </div>
 
-                <!-- নতুন যুক্ত করা টয়লেটের ছবি আপলোডের অপশন -->
                 <div class="border-2 border-dashed border-blue-300 p-4 rounded-lg text-center hover:bg-blue-50 transition cursor-pointer">
                     <label class="cursor-pointer block">
                         <svg class="mx-auto h-10 w-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
