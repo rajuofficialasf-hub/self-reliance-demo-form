@@ -606,7 +606,8 @@
                     </div>
 
                     <div>
-                        <label class="input-label text-xs">জমি, বাড়ি বা বাহন থেকে ভাড়া/অতিরিক্ত ফসল পান?</label>
+                        <!-- যাকাত সেকশনের প্রশ্নটি আপডেট করা হয়েছে -->
+                        <label class="input-label text-xs">আপনার এমন কোনো জমি, বাড়ি, বাহন বা অন্য কোনো সম্পত্তি আছে কি, যা থেকে ভাড়া পান অথবা সারা বছরের খোরাকির অতিরিক্ত ফসল পান?</label>
                         <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z43" onchange="toggleVis('z43amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z43" onchange="toggleVis('z43amt', false)" checked> না</label></div></div>
                         <input type="number" id="z43amt" class="hidden-section input-field mt-1" placeholder="বার্ষিক আয় (টাকায়)">
                     </div>
@@ -644,11 +645,138 @@
             </div>
         </div>
 
+        <!-- ================= দ্বীনি ইলম ও আমলের মূল্যায়ন ================= -->
+        <div class="form-section bg-emerald-50 border-emerald-200">
+            <h2 class="section-title text-emerald-800 border-emerald-300">দ্বীনি ইলম ও আমলের মূল্যায়ন</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="bg-white p-4 rounded-lg border border-emerald-100 shadow-sm">
+                    <label class="input-label">ঈমানে মুফাসসাল বলুন। একজন মুসলমানকে মুসলমান হতে হলে কোন্ কোন্ বিষয়ের ওপর বিশ্বাস রাখতে হয়?</label>
+                    <select class="input-field mb-3" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">চমৎকার</option>
+                        <option value="3">আরো ভালো করতে হবে</option>
+                        <option value="1">নতুন করে জানতে হবে</option>
+                    </select>
+                    <!-- অডিও আপলোড অপশন -->
+                    <div class="p-3 border border-dashed border-emerald-300 rounded bg-emerald-50/50">
+                        <label class="block text-xs font-semibold text-emerald-700 mb-1">অডিও আপলোড বা রেকর্ড করুন:</label>
+                        <input type="file" accept="audio/*" capture="microphone" class="w-full text-xs text-gray-600 file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:bg-emerald-100 file:text-emerald-800 hover:file:bg-emerald-200 cursor-pointer">
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border border-emerald-100 shadow-sm">
+                    <label class="input-label">সুরা ফাতিহা সহ ৫টি সুরা তিলাওয়াত করুন (সঠিকভাবে পড়তে পেরেছেন?)</label>
+                    <select class="input-field mb-3" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">চমৎকার</option>
+                        <option value="3">মাঝারি</option>
+                        <option value="1">উন্নতির প্রয়োজন</option>
+                    </select>
+                    <!-- অডিও আপলোড অপশন -->
+                    <div class="p-3 border border-dashed border-emerald-300 rounded bg-emerald-50/50">
+                        <label class="block text-xs font-semibold text-emerald-700 mb-1">অডিও আপলোড বা রেকর্ড করুন:</label>
+                        <input type="file" accept="audio/*" capture="microphone" class="w-full text-xs text-gray-600 file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:bg-emerald-100 file:text-emerald-800 hover:file:bg-emerald-200 cursor-pointer">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="input-label">ইসলামের ৫টি স্তম্ভ কী কী?</label>
+                    <select class="input-field" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">চমৎকার</option>
+                        <option value="3">আরো ভালো করতে হবে</option>
+                        <option value="1">নতুন করে জানতে হবে</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">এমন একটি বিষয় বলুন যেটা করলে ঈমান চলে যায়।</label>
+                    <select class="input-field" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">চমৎকার</option>
+                        <option value="3">আরো ভালো করতে হবে</option>
+                        <option value="1">নতুন করে জানতে হবে</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">প্রতিদিন কি পাঁচ ওয়াক্ত সালাত করেন?</label>
+                    <select class="input-field" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">পাঁচ ওয়াক্ত পড়ি</option>
+                        <option value="3">মাঝেমধ্যে ছুটে যায়</option>
+                        <option value="1">এখন থেকে পড়বো ইনশাআল্লাহ</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">কুরআন তিলাওয়াত কেমন?</label>
+                    <select class="input-field" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">চমৎকার (আরেকজনকে শেখাতে পারবেন)</option>
+                        <option value="3">আরো ভালো করতে হবে</option>
+                        <option value="1">নতুন করে শিখতে হবে</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">টিভি বা মোবাইলের হারাম বিনোদন (টিভি, গান, যাত্রাপালা ইত্যাদি) থেকে বেঁচে থাকা হয় কিনা?</label>
+                    <select class="input-field" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">সম্পূর্ণরূপে বেঁচে থাকি</option>
+                        <option value="3">মাঝেমধ্যে বেঁচে থাকতে পারি না</option>
+                        <option value="1">এখন থেকে বেঁচে থাকার চেষ্ট করব</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">বাড়িতে পর্দার ব্যবস্থা আছে কি না?</label>
+                    <select class="input-field" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">পরিপূর্ণ পর্দা করা হয়</option>
+                        <option value="3">শুধু আত্মীয়দের সামনে পর্দার খেলাফ হয়</option>
+                        <option value="1">পর্দার ফরজ বাস্তবায়নে এখন থেকে উদ্যোগ নেব</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">সন্তান ও পরিবারকে দ্বীন শেখানোর ব্যবস্থা করা হয়েছে কিনা?</label>
+                    <select class="input-field" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">স্ত্রী-সন্তান সবার জন্য করা হয়েছে</option>
+                        <option value="3">স্ত্রীর জন্য করা হয়নি তবে সন্তানের জন্য হয়েছে</option>
+                        <option value="1">স্ত্রী-সন্তানকে দ্বীন শেখানোর ব্যবস্থা করব</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">কোনো হক্কানী আলেমের সাথে সম্পর্ক আছে কিনা, আলেম থেকে মাসআলা ইত্যাদি জিজ্ঞেস করা হয় কিনা?</label>
+                    <select class="input-field" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">নিয়মিত যোগাযোগ রাখি ও মাসআলা জিজ্ঞেস করি</option>
+                        <option value="3">সম্পর্ক আছে কিন্তু নিয়মিত যোগাযোগ নেই</option>
+                        <option value="1">এখনো কারো সাথে সম্পর্ক নেই</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="input-label">উপার্জন সম্পূর্ণ হালাল কি না, কোনো সুদ, জুয়া ইত্যাদি হারাম লেনদেনের সাথে জড়িত কিনা?</label>
+                    <select class="input-field" required>
+                        <option value="">মূল্যায়ন নির্বাচন করুন</option>
+                        <option value="5">কোনো হারাম উপার্জন নাই</option>
+                        <option value="3">সামান্য আছে</option>
+                        <option value="1">এখন থেকে সম্পূর্ণভাবে বিরত থাকবো</option>
+                    </select>
+                </div>
+                
+            </div>
+        </div>
+
         <!-- ================= প্রত্যয়ন ================= -->
         <div class="form-section bg-green-50 border-green-200">
             <h2 class="section-title text-green-700 border-green-300">প্রত্যয়ন</h2>
             
-            <!-- নতুন যুক্ত করা যোগ্যতা সম্পর্কিত নোট -->
             <p class="text-xs text-gray-700 mb-4 bg-green-100/60 p-2 rounded border-l-4 border-green-500 shadow-sm leading-relaxed">
                 <span class="font-bold text-green-800">প্রত্যয়নকারী হওয়ার যোগ্যতা:</span> উক্ত ব্যক্তিকে চেনে এমন এলাকার গণ্যমান্য ব্যক্তি, বাড়ির পাশের প্রতিবেশী, মসজিদ/ মাদ্রাসার ইমাম বা মুহতামিম।
             </p>
