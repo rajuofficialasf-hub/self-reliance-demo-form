@@ -88,6 +88,7 @@
                         <option value="">নির্বাচন করুন</option>
                         <option>পুরুষ</option>
                         <option>মহিলা</option>
+                        <option>তৃতীয় লিঙ্গ</option>
                     </select>
                 </div>
 
@@ -236,19 +237,34 @@
                     </div>
                 </div>
 
-                <!-- আয় ও ব্যয় সেকশন (ডায়নামিক কমেন্ট সহ) -->
-                <div>
-                    <label class="input-label">উপকারভোগীর মাসিক আয়</label>
-                    <input type="number" id="incomeAmount" oninput="checkIncomeExpense()" class="input-field" placeholder="টাকার পরিমাণ">
-                </div>
-                <div>
-                    <label class="input-label">উপকারভোগীর মাসিক ব্যয়</label>
-                    <input type="number" id="expenseAmount" oninput="checkIncomeExpense()" class="input-field" placeholder="টাকার পরিমাণ">
+                <!-- আয় ও ব্যয় সেকশন -->
+                <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="input-label">উপকারভোগীর মাসিক আয়</label>
+                        <input type="number" id="incomeAmount" oninput="calculateTotalIncome()" class="input-field" placeholder="টাকার পরিমাণ">
+                    </div>
+
+                    <!-- পরিবারে মোট আয়কারীর সংখ্যা ও মোট আয় (Auto Calculated) - আয়ের ঠিক পরেই -->
+                    <div class="bg-indigo-50 p-3 border border-indigo-200 rounded-lg flex flex-col gap-2 shadow-sm">
+                        <div class="flex justify-between items-center border-b border-indigo-100 pb-1">
+                            <span class="text-sm font-semibold text-indigo-900">পরিবারে মোট আয়কারীর সংখ্যা:</span>
+                            <input type="text" id="totalEarnersDisplay" class="bg-transparent text-right font-bold text-indigo-800 w-24 outline-none pointer-events-none" readonly value="০ জন">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-semibold text-indigo-900">পরিবারের মোট আয় (মাসিক):</span>
+                            <input type="text" id="totalFamilyIncomeDisplay" class="bg-transparent text-right font-bold text-indigo-800 w-32 outline-none pointer-events-none" readonly value="০ টাকা">
+                        </div>
+                    </div>
                 </div>
 
-                <div id="deficitSection" class="hidden-section md:col-span-2 bg-red-50 p-4 rounded-lg border border-red-200">
+                <div class="md:col-span-2">
+                    <label class="input-label">পরিবারের মাসিক ব্যয়</label>
+                    <input type="number" id="expenseAmount" oninput="calculateTotalIncome()" class="input-field md:w-1/2" placeholder="পরিবারের মোট ব্যয়ের পরিমাণ">
+                </div>
+
+                <div id="deficitSection" class="hidden-section md:col-span-2 bg-red-50 p-4 rounded-lg border border-red-200 mt-2">
                     <label class="input-label text-red-800">স্বেচ্ছাসেবকের মন্তব্য (আয়ের চেয়ে ব্যয় বেশি হওয়ার কারণ)</label>
-                    <p class="text-xs text-red-600 mb-2">উপকারভোগীর ব্যয় কেন বেশি এবং এই আয়ের ঘাটতি তিনি কীভাবে মেটান তা বিস্তারিত লিখুন।</p>
+                    <p class="text-xs text-red-600 mb-2">পরিবারের আয়ের চেয়ে ব্যয় কেন বেশি এবং এই ঘাটতি তিনি কীভাবে মেটান তা বিস্তারিত লিখুন।</p>
                     <textarea class="input-field" rows="3" placeholder="বিস্তারিত কারণ ও ঘাটতি মেটানোর উপায় লিখুন..."></textarea>
                 </div>
 
@@ -262,7 +278,7 @@
                     <div id="houseDetailsYes" class="hidden-section grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="input-label text-xs">বসতবাড়ির ধরণ কেমন?</label>
-                            <select class="input-field">
+                            <select class="input-field" onchange="checkOther(this, 'otherHouseInput')">
                                 <option value="">নির্বাচন করুন</option>
                                 <option>কাঁচা ঘর</option>
                                 <option>সেমিপাকা ঘর</option>
@@ -270,8 +286,9 @@
                                 <option>টিনশেড ঘর</option>
                                 <option>বাঁশের ঘর</option>
                                 <option>ছনের ঘর</option>
-                                <option>অন্যান্য</option>
+                                <option value="অন্যান্য">অন্যান্য</option>
                             </select>
+                            <input type="text" id="otherHouseInput" class="hidden-section input-field mt-2" placeholder="বসতবাড়ির ধরণ লিখুন">
                         </div>
                         <div>
                             <label class="input-label text-xs">বসতবাড়ির জায়গার পরিমাণ কত?</label>
@@ -500,7 +517,7 @@
                     <select class="input-field md:w-1/2" onchange="handleLivestockType(this.value)">
                         <option value="">নির্বাচন করুন</option>
                         <option>গরু পালন</option>
-                        <option>ছাগল পালন</option>
+                        <option>ছাগ পালন</option>
                         <option>ভেড়া পালন</option>
                         <option>হাঁস পালন</option>
                         <option>মুরগি পালন</option>
@@ -561,17 +578,18 @@
             <div id="loanSection" class="hidden-section grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label class="input-label">কোথা থেকে ঋণ নিয়েছেন?</label>
-                    <select class="input-field">
+                    <select class="input-field" onchange="checkOther(this, 'otherLoanSourceInput')">
                         <option value="">নির্বাচন করুন</option>
                         <option>এনজিও</option>
                         <option>ব্যাংক লোন</option>
                         <option>মহাজনী</option>
                         <option>কর্জে হাসানা</option>
-                        <option>অন্যান্য</option>
+                        <option value="অন্যান্য">অন্যান্য</option>
                     </select>
+                    <input type="text" id="otherLoanSourceInput" class="hidden-section input-field mt-2" placeholder="ঋণের উৎস লিখুন">
                 </div>
                 <div>
-                    <!-- ঋণ নেয়ার কারণ আপডেট (অন্যান্য লিখার অপশন) -->
+                    <!-- ঋণ নেয়ার কারণ (অন্যান্য লিখার অপশন) -->
                     <label class="input-label">কী কারণে ঋণ নিয়েছিলেন?</label>
                     <select class="input-field" onchange="checkOther(this, 'otherLoanReason')">
                         <option value="">নির্বাচন করুন</option>
@@ -876,10 +894,14 @@
                 </label>
             </div>
             
-            <div id="prottayonFields" class="hidden-section grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div id="prottayonFields" class="hidden-section grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                     <label class="input-label">প্রত্যয়নকারীর নাম</label>
                     <input type="text" class="input-field" required placeholder="নাম লিখুন">
+                </div>
+                <div>
+                    <label class="input-label">প্রত্যয়নকারীর পেশা</label>
+                    <input type="text" class="input-field" required placeholder="পেশা লিখুন">
                 </div>
                 <div>
                     <label class="input-label">প্রত্যয়নকারীর মোবাইল</label>
@@ -947,9 +969,8 @@
         <!-- সতর্কবার্তা (Disclaimer) -->
         <div class="mt-8 mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-center shadow-sm">
             <p class="text-sm font-bold text-red-700 flex items-center justify-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                বিশেষ দ্রষ্টব্য: কোনো ধরণের মিথ্যা তথ্য দেওয়া বা তথ্য গোপন করলে আবেদন বাতিলের এখতিয়ার 'আস-সুন্নাহ ফাউন্ডেশন' রাখে।
-            </p>
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+বিঃদ্রঃ কোনো ধরনের মিথ্যা তথ্য প্রদান বা তথ্য গোপনের প্রমাণ পাওয়া গেলে আস-সুন্নাহ ফাউন্ডেশন আবেদন বাতিল করার অধিকার সংরক্ষণ করে।            </p>
         </div>
 
         <!-- Submit Button -->
@@ -992,19 +1013,6 @@
         toggleVis('ecoBusinessType', val === 'ব্যবসা');
         toggleVis('unemployedDetails', val === 'বেকার');
         toggleVis('otherProfessionDetails', val === 'অন্যান্য');
-    }
-
-    // আয় ও ব্যয় চেক করার ফাংশন
-    function checkIncomeExpense() {
-        const income = parseFloat(document.getElementById('incomeAmount').value) || 0;
-        const expense = parseFloat(document.getElementById('expenseAmount').value) || 0;
-        const deficitSection = document.getElementById('deficitSection');
-        
-        if (expense > income) {
-            deficitSection.classList.remove('hidden-section');
-        } else {
-            deficitSection.classList.add('hidden-section');
-        }
     }
 
     function toggleHouseDetails(val) {
@@ -1114,6 +1122,65 @@
         }
     }
 
+    // মোট আয় হিসাব করা (Family + Beneficiary)
+    function calculateTotalIncome() {
+        let totalIncome = 0;
+        let totalEarners = 0;
+
+        // User's own income
+        const myIncome = parseFloat(document.getElementById('incomeAmount').value) || 0;
+        if (myIncome > 0) {
+            totalIncome += myIncome;
+            totalEarners += 1;
+        }
+
+        // Family members' income
+        const familyIncomes = document.querySelectorAll('.family-income-input');
+        familyIncomes.forEach(input => {
+            const val = parseFloat(input.value) || 0;
+            if (val > 0) {
+                totalIncome += val;
+                totalEarners += 1;
+            }
+        });
+
+        // Update UI
+        const totalIncomeField = document.getElementById('totalFamilyIncomeDisplay');
+        const totalEarnersField = document.getElementById('totalEarnersDisplay');
+        
+        if(totalIncomeField) totalIncomeField.value = totalIncome + " টাকা";
+        if(totalEarnersField) totalEarnersField.value = totalEarners + " জন";
+
+        checkIncomeExpense(totalIncome);
+    }
+
+    // আয় ও ব্যয় চেক করার ফাংশন (আপডেটেড)
+    function checkIncomeExpense(calculatedIncome = null) {
+        let totalIncome = calculatedIncome;
+        
+        // If triggered directly by expense input without passing total income
+        if(totalIncome === null) {
+            totalIncome = 0;
+            const myIncome = parseFloat(document.getElementById('incomeAmount').value) || 0;
+            if (myIncome > 0) totalIncome += myIncome;
+            const familyIncomes = document.querySelectorAll('.family-income-input');
+            familyIncomes.forEach(input => {
+                const val = parseFloat(input.value) || 0;
+                if (val > 0) totalIncome += val;
+            });
+        }
+
+        const expense = parseFloat(document.getElementById('expenseAmount').value) || 0;
+        const deficitSection = document.getElementById('deficitSection');
+        
+        // যদি পরিবারের মোট আয়ের চেয়ে ব্যয় বেশি হয়
+        if (expense > totalIncome && expense > 0) {
+            deficitSection.classList.remove('hidden-section');
+        } else {
+            deficitSection.classList.add('hidden-section');
+        }
+    }
+
     // ডাইনামিক ফ্যামিলি টেবিল
     function generateFamilyTable() {
         const count = parseInt(document.getElementById('familyCount').value) || 0;
@@ -1132,13 +1199,15 @@
                     <td><select class="input-field">${relOps}</select></td>
                     <td><input type="number" class="input-field" placeholder="বয়স"></td>
                     <td><input type="text" class="input-field" placeholder="পেশা"></td>
-                    <td><input type="number" class="input-field" placeholder="মাসিক ইনকাম"></td>
+                    <td><input type="number" class="input-field family-income-input" placeholder="মাসিক ইনকাম" oninput="calculateTotalIncome()"></td>
                 `;
                 tbody.appendChild(tr);
             }
         } else {
             container.classList.add('hidden-section');
         }
+        // রিক্যালকুলেট
+        calculateTotalIncome();
     }
 
     // লাইভ লোকেশন (GPS)
