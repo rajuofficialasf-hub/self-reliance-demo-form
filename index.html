@@ -77,7 +77,7 @@
                 </div>
 
                 <div>
-                    <label class="input-label">সেকেন্ডারি মোবাইল নম্বর</label>
+                    <label class="input-label">বিকল্প মোবাইল নম্বর</label>
                     <p class="hint-text mb-1">আপনার মোবাইল বন্ধ থাকলেও যাকে ফোন দিলে আপনাকে পাওয়া যাবে</p>
                     <input type="tel" class="input-field" placeholder="01XXXXXXXXX">
                 </div>
@@ -88,7 +88,6 @@
                         <option value="">নির্বাচন করুন</option>
                         <option>পুরুষ</option>
                         <option>মহিলা</option>
-                        <option>হিজড়া</option>
                     </select>
                 </div>
 
@@ -108,29 +107,16 @@
                     <select class="input-field" required>
                         <option value="">নির্বাচন করুন</option>
                         <option>নিরক্ষর</option>
-                        <option>প্রাথমিক অসম্পূর্ণ</option>
-                        <option>প্রাথমিক সম্পূর্ণ</option>
-                        <option>মাধ্যমিক অসম্পূর্ণ</option>
-                        <option>ইবতেদায়ী</option>
-                        <option>দাখিল</option>
-                        <option>আলিম</option>
-                        <option>ফাজিল</option>
-                        <option>কামিল</option>
-                        <option>হিফজুল কুরআন</option>
-                        <option>প্রাথমিক শিক্ষা</option>
-                        <option>SSC সমমান</option>
-                        <option>HSC সমমান</option>
-                        <option>স্নাতক (Bachelor's) সমমান</option>
-                        <option>স্নাতকোত্তর (Master's) সমমান</option>
-                        <option>মুতাওয়াসসিতা</option>
-                        <option>সানাবিয়া উলইয়া</option>
-                        <option>ফযিলত</option>
-                        <option>দাওরায়ে হাদিস (তাকমিল)</option>
+                        <option>প্রাথমিক বা সমমান</option>
+                        <option>মাধ্যমিক বা সমমান</option>
+                        <option>উচ্চ মাধ্যমিক বা  সমমান</option>
+                        <option>স্নাতক বা সমমান</option>
+                        <option>স্নাতকোত্তর বা সমমান</option>
                     </select>
                 </div>
 
                 <div class="md:col-span-2 bg-blue-50 p-3 rounded-lg border border-blue-100">
-                    <label class="input-label">উপকারভোগীর কোনো দীর্ঘমেয়াদী রোগ বা শারীরিক প্রতিবন্ধকতা আছে কি না?</label>
+                    <label class="input-label">উপকারভোগীর কোনো জটিল রোগ বা শারীরিক প্রতিবন্ধকতা আছে কি না?</label>
                     <div class="radio-group mb-2">
                         <label class="radio-item"><input type="radio" name="disease" value="yes" onchange="toggleVis('diseaseDetails', true)"> হ্যাঁ</label>
                         <label class="radio-item"><input type="radio" name="disease" value="no" onchange="toggleVis('diseaseDetails', false)" checked> না</label>
@@ -177,6 +163,7 @@
                             <tr>
                                 <th>নাম</th>
                                 <th>উপকারভোগীর সাথে সম্পর্ক</th>
+                                <th>লিঙ্গ</th> 
                                 <th>বয়স</th>
                                 <th>পেশা</th>
                                 <th>মাসিক ইনকাম (যদি থাকে)</th>
@@ -200,12 +187,12 @@
                         <option value="">নির্বাচন করুন</option>
                         <option value="কৃষক">কৃষক</option>
                         <option value="দিনমজুর">দিনমজুর</option>
-                        <option value="রিক্সা/ভ্যান চালক">রিক্সা/ভ্যান চালক</option>
+                        <option value="রিক্সা/ভ্যান চালক">রিকশা/ভ্যান চালক</option>
                         <option value="মৎস্যজীবী">মৎস্যজীবী</option>
                         <option value="গৃহকর্মী">গৃহকর্মী</option>
                         <option value="বেকার">বেকার</option>
                         <option value="শিক্ষার্থী">শিক্ষার্থী</option>
-                        <option value="ব্যবসা">ব্যবসা</option>
+                        <option value="ব্যবসা">ব্যাবসা</option>
                         <option value="অন্যান্য">অন্যান্য</option>
                     </select>
                     
@@ -274,7 +261,7 @@
                                 <option>পাকা ঘর</option>
                                 <option>টিনশেড ঘর</option>
                                 <option>বাঁশের ঘর</option>
-                                <option>ছনের ঘর</option>
+                                <option>শনের ঘর</option>
                                 <option value="অন্যান্য">অন্যান্য</option>
                             </select>
                             <input type="text" id="otherHouseInput" class="hidden-section input-field mt-2" placeholder="বসতবাড়ির ধরণ লিখুন">
@@ -317,7 +304,7 @@
                 <div class="md:col-span-2 border-t pt-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="input-label">উপকারভোগীর মোট কৃষি জমি আছে?</label>
+                            <label class="input-label">উপকারভোগীর কৃষি জমি আছে?</label>
                             <div class="radio-group">
                                 <label class="radio-item"><input type="radio" name="agriLand" value="yes" onchange="toggleVis('agriLandAmount', true)"> হ্যাঁ</label>
                                 <label class="radio-item"><input type="radio" name="agriLand" value="no" onchange="toggleVis('agriLandAmount', false)" checked> না</label>
@@ -342,7 +329,7 @@
 
                 <!-- গবাদি পশু -->
                 <div class="md:col-span-2 bg-green-50 p-4 border border-green-100 rounded-lg">
-                    <label class="input-label mb-3 border-b border-green-200 pb-1">গবাদি পশুর পরিমাণঃ</label>
+                    <label class="input-label mb-3 border-b border-green-200 pb-1">গবাদি পশুর পরিমাণ</label>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                         
                         <div class="bg-white p-3 rounded border border-green-200">
@@ -401,7 +388,7 @@
                 <!-- ================= সম্পদ ও দায়বদ্ধতা (পূর্বের যাকাত সেকশন) ================= -->
                 <div class="md:col-span-2 border-t pt-6 mt-4">
                     <h3 class="text-lg font-bold text-gray-800 mb-3 border-b pb-2">সম্পদ ও দায়বদ্ধতার তথ্য</h3>
-                    <p class="text-xs text-gray-500 mb-4 bg-yellow-50 p-2 border-l-4 border-yellow-400">হিন্ট: নিচের প্রশ্নগুলোর উত্তর হ্যাঁ হলে টাকার পরিমাণ লিখুন। না থাকলে ফাঁকা রাখুন বা ০ লিখুন।</p>
+                    <p class="text-xs text-gray-500 mb-4 bg-yellow-50 p-2 border-l-4 border-yellow-400">নিচের প্রশ্নগুলোর উত্তর হ্যাঁ হলে টাকার পরিমাণ লিখুন। না থাকলে ফাঁকা রাখুন বা ০ লিখুন।</p>
                     
                     <div class="space-y-4">
                         <div class="border-b pb-3">
@@ -413,7 +400,7 @@
                         </div>
 
                         <div class="border-b pb-3">
-                            <label class="input-label">ব্যাংক বা কোন আর্থিক প্রতিষ্ঠানে কোন জমানো টাকা আছে?</label>
+                            <label class="input-label">ব্যাংক বা আর্থিক প্রতিষ্ঠানে কোনো জমানো টাকা আছে?</label>
                             <div class="flex gap-4 mt-1">
                                 <div class="radio-group"><label><input type="radio" name="z37" onchange="toggleVis('z37amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z37" onchange="toggleVis('z37amt', false)" checked> না</label></div>
                                 <input type="number" id="z37amt" class="hidden-section input-field flex-1" placeholder="জমাকৃত অর্থ">
@@ -438,7 +425,7 @@
                         </div>
 
                         <div class="bg-gray-100/50 p-3 rounded border border-gray-300">
-                            <label class="input-label text-gray-700">আপনার মালিকানাধীন কোনো রৌপ্য (রুপা) আছে?</label>
+                            <label class="input-label text-gray-700">আপনার মালিকানাধীন কোনো রৌপ্য আছে?</label>
                             <div class="radio-group mb-2"><label><input type="radio" name="z39" onchange="toggleVis('z39sec', true)"> হ্যাঁ</label> <label><input type="radio" name="z39" onchange="toggleVis('z39sec', false)" checked> না</label></div>
                             <div id="z39sec" class="hidden-section grid grid-cols-1 sm:grid-cols-3 gap-2">
                                 <input type="number" step="0.01" class="input-field" placeholder="পরিমাণ (আনায়)">
@@ -478,7 +465,7 @@
                             </div>
 
                             <div>
-                                <label class="input-label text-xs">বিক্রির উদ্দেশ্যে কেনা কোনো জমি আছে কী?</label>
+                                <label class="input-label text-xs">বিক্রির উদ্দেশ্যে কেনা কোনো জমি আছে কি?</label>
                                 <div class="flex gap-2"><div class="radio-group"><label><input type="radio" name="z44" onchange="toggleVis('z44amt', true)"> হ্যাঁ</label> <label><input type="radio" name="z44" onchange="toggleVis('z44amt', false)" checked> না</label></div></div>
                                 <input type="number" id="z44amt" class="hidden-section input-field mt-1" placeholder="বর্তমান বিক্রয়মূল্য">
                             </div>
@@ -751,7 +738,7 @@
             <div class="mb-4 bg-white p-3 rounded border border-green-100 shadow-sm">
                 <label class="flex items-start gap-3 cursor-pointer">
                     <input type="checkbox" required id="prottayonCheck" onchange="toggleVis('prottayonFields', this.checked)" class="mt-1 w-5 h-5 text-green-600 focus:ring-green-500 border-gray-300 rounded">
-                    <span class="text-sm font-semibold text-gray-800">আমি উক্ত ব্যক্তিকে ব্যক্তিগতভাবে চিনি, আমার জানামতে তার প্রদত্ত সকল তথ্য সঠিক।</span>
+                    <span class="text-sm font-semibold text-gray-800">আমি উক্ত ব্যক্তিকে ব্যক্তিগতভাবে চিনি, আমার জানামতে উপরের প্রদত্ত সকল তথ্য সঠিক।</span>
                 </label>
             </div>
             
@@ -831,14 +818,14 @@
         <div class="mt-8 mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-center shadow-sm">
             <p class="text-sm font-bold text-red-700 flex items-center justify-center gap-2">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                বিশেষ দ্রষ্টব্য: কোনো ধরণের মিথ্যা তথ্য দেওয়া বা তথ্য গোপন করলে আবেদন বাতিলের এখতিয়ার 'আস-সুন্নাহ ফাউন্ডেশন' রাখে।
+                বিশেষ দ্রষ্টব্য: কোনো ধরণের মিথ্যা তথ্য দেওয়া বা তথ্য গোপন করলে আস-সুন্নাহ ফাউন্ডেশন আবেদন বাতিলের অধিকার সংরক্ষণ করে। 
             </p>
         </div>
 
         <!-- Submit Button -->
         <div class="text-center pt-2 border-t border-gray-300">
             <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg transition duration-300 text-lg w-full md:w-auto">
-                ফর্ম সাবমিট করুন
+                ফরম সাবমিট করুন
             </button>
         </div>
 
