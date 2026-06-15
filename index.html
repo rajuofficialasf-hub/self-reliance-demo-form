@@ -223,6 +223,11 @@
                     <div id="ecoBusinessType" class="hidden-section mt-2 md:w-1/2">
                         <input type="text" class="input-field" placeholder="কী ধরণের ব্যবসা?">
                     </div>
+
+                    <!-- অন্যান্য পেশা হলে -->
+                    <div id="otherProfessionDetails" class="hidden-section mt-2 md:w-1/2">
+                        <input type="text" class="input-field" placeholder="পেশার নাম লিখুন">
+                    </div>
                     
                     <!-- বেকার হলে -->
                     <div id="unemployedDetails" class="hidden-section mt-3 p-3 bg-orange-50 border border-orange-200 rounded-lg">
@@ -284,14 +289,23 @@
                     </div>
                 </div>
 
-                <div>
-                    <label class="input-label">উপকারভোগীর টয়লেটের ধরণ</label>
-                    <select class="input-field">
-                        <option value="">নির্বাচন করুন</option>
-                        <option>কাঁচা</option>
-                        <option>পাকা</option>
-                        <option>নেই</option>
-                    </select>
+                <!-- টয়লেটের আপডেট -->
+                <div class="md:col-span-2">
+                    <label class="input-label">উপকারভোগীর নিজস্ব টয়লেট আছে কি?</label>
+                    <div class="radio-group mb-2">
+                        <label class="radio-item"><input type="radio" name="hasToilet" value="yes" onchange="toggleToiletDetails(true)"> হ্যাঁ</label>
+                        <label class="radio-item"><input type="radio" name="hasToilet" value="no" onchange="toggleToiletDetails(false)" checked> না</label>
+                    </div>
+                    <div id="toiletTypeSection" class="hidden-section mt-2 w-full md:w-1/2">
+                        <label class="input-label text-xs">টয়লেটের ধরণ</label>
+                        <select class="input-field">
+                            <option value="">নির্বাচন করুন</option>
+                            <option>কাঁচা</option>
+                            <option>টিনশেড</option>
+                            <option>সেমিপাকা</option>
+                            <option>পাকা</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="md:col-span-2 border-t pt-4">
@@ -557,8 +571,9 @@
                     </select>
                 </div>
                 <div>
+                    <!-- ঋণ নেয়ার কারণ আপডেট (অন্যান্য লিখার অপশন) -->
                     <label class="input-label">কী কারণে ঋণ নিয়েছিলেন?</label>
-                    <select class="input-field">
+                    <select class="input-field" onchange="checkOther(this, 'otherLoanReason')">
                         <option value="">নির্বাচন করুন</option>
                         <option>দৈনন্দিন চাহিদা পূরণ</option>
                         <option>শিক্ষা ব্যয়</option>
@@ -569,7 +584,9 @@
                         <option>ঘর নির্মাণ / মেরামত</option>
                         <option>ঋণ পরিশোধ</option>
                         <option>মেয়ের বিয়ের জন্য</option>
+                        <option value="অন্যান্য">অন্যান্য</option>
                     </select>
+                    <input type="text" id="otherLoanReason" class="hidden-section input-field mt-2" placeholder="ঋণ নেওয়ার অন্যান্য কারণ লিখুন">
                 </div>
                 <div>
                     <label class="input-label">যে উদ্দেশ্যে ঋণ নিয়েছিলেন তা কি পূরণ হয়েছে?</label>
@@ -612,13 +629,20 @@
                     </div>
                 </div>
 
+                <!-- স্বর্ণ ও রৌপ্যের আপডেট -->
                 <div class="bg-yellow-50/50 p-3 rounded border border-yellow-200">
                     <label class="input-label text-yellow-800">আপনার মালিকানাধীন কোনো স্বর্ণ আছে?</label>
                     <div class="radio-group mb-2"><label><input type="radio" name="z38" onchange="toggleVis('z38sec', true)"> হ্যাঁ</label> <label><input type="radio" name="z38" onchange="toggleVis('z38sec', false)" checked> না</label></div>
                     <div id="z38sec" class="hidden-section grid grid-cols-1 sm:grid-cols-3 gap-2">
-                        <input type="text" class="input-field" placeholder="মোট স্বর্ণের পরিমাণ (আনা/ভরি)">
-                        <input type="text" class="input-field" placeholder="স্বর্ণের ক্যারেট">
-                        <input type="text" class="input-field bg-gray-100" readonly value="প্রতি 'আনা' বাজারমূল্য: ৫০০০/- (Pre-defined)">
+                        <input type="number" step="0.01" class="input-field" placeholder="পরিমাণ (আনায়)">
+                        <select class="input-field" id="goldCarat" onchange="updateGoldPrice()">
+                            <option value="">ক্যারেট নির্বাচন</option>
+                            <option value="24">২৪ ক্যারেট</option>
+                            <option value="22">২২ ক্যারেট</option>
+                            <option value="21">২১ ক্যারেট</option>
+                            <option value="18">১৮ ক্যারেট</option>
+                        </select>
+                        <input type="text" id="goldPrice" class="input-field bg-gray-100" readonly value="প্রতি 'আনা' বাজারমূল্য">
                     </div>
                 </div>
 
@@ -626,9 +650,15 @@
                     <label class="input-label text-gray-700">আপনার মালিকানাধীন কোনো রৌপ্য (রুপা) আছে?</label>
                     <div class="radio-group mb-2"><label><input type="radio" name="z39" onchange="toggleVis('z39sec', true)"> হ্যাঁ</label> <label><input type="radio" name="z39" onchange="toggleVis('z39sec', false)" checked> না</label></div>
                     <div id="z39sec" class="hidden-section grid grid-cols-1 sm:grid-cols-3 gap-2">
-                        <input type="text" class="input-field" placeholder="মোট রৌপ্যের পরিমাণ (আনা/ভরি)">
-                        <input type="text" class="input-field" placeholder="রুপার ক্যারেট">
-                        <input type="text" class="input-field bg-gray-100" readonly value="প্রতি 'আনা' বাজারমূল্য: ১০০/- (Pre-defined)">
+                        <input type="number" step="0.01" class="input-field" placeholder="পরিমাণ (আনায়)">
+                        <select class="input-field" id="silverCarat" onchange="updateSilverPrice()">
+                            <option value="">ক্যারেট নির্বাচন</option>
+                            <option value="24">২৪ ক্যারেট</option>
+                            <option value="22">২২ ক্যারেট</option>
+                            <option value="21">২১ ক্যারেট</option>
+                            <option value="18">১৮ ক্যারেট</option>
+                        </select>
+                        <input type="text" id="silverPrice" class="input-field bg-gray-100" readonly value="প্রতি 'আনা' বাজারমূল্য">
                     </div>
                 </div>
 
@@ -874,8 +904,9 @@
                     </label>
                 </div>
 
-                <div class="border-2 border-dashed border-blue-300 p-4 rounded-lg text-center hover:bg-blue-50 transition cursor-pointer">
-                    <label class="cursor-pointer block">
+                <!-- টয়লেটের ছবি (ডায়নামিক) -->
+                <div id="toiletImageBlock" class="hidden-section border-2 border-dashed border-blue-300 p-4 rounded-lg text-center hover:bg-blue-50 transition cursor-pointer">
+                    <label class="cursor-pointer block w-full h-full">
                         <svg class="mx-auto h-10 w-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                         <span class="block text-sm font-semibold text-gray-700 mt-2">টয়লেটের ছবি</span>
                         <input type="file" accept="image/*" class="hidden">
@@ -913,8 +944,16 @@
             </div>
         </div>
 
+        <!-- সতর্কবার্তা (Disclaimer) -->
+        <div class="mt-8 mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-center shadow-sm">
+            <p class="text-sm font-bold text-red-700 flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                বিশেষ দ্রষ্টব্য: কোনো ধরণের মিথ্যা তথ্য দেওয়া বা তথ্য গোপন করলে আবেদন বাতিলের এখতিয়ার 'আস-সুন্নাহ ফাউন্ডেশন' রাখে।
+            </p>
+        </div>
+
         <!-- Submit Button -->
-        <div class="mt-8 text-center pt-4 border-t border-gray-300">
+        <div class="text-center pt-2 border-t border-gray-300">
             <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg transition duration-300 text-lg w-full md:w-auto">
                 ফর্ম সাবমিট করুন
             </button>
@@ -948,10 +987,11 @@
         }
     }
 
-    // পেশা পরিবর্তন হ্যান্ডলার (ব্যবসা ও বেকার অপশনের জন্য)
+    // পেশা পরিবর্তন হ্যান্ডলার (ব্যবসা, বেকার ও অন্যান্য অপশনের জন্য)
     function handleProfession(val) {
         toggleVis('ecoBusinessType', val === 'ব্যবসা');
         toggleVis('unemployedDetails', val === 'বেকার');
+        toggleVis('otherProfessionDetails', val === 'অন্যান্য');
     }
 
     // আয় ও ব্যয় চেক করার ফাংশন
@@ -974,6 +1014,47 @@
         } else {
             document.getElementById('houseDetailsYes').classList.add('hidden-section');
             document.getElementById('houseDetailsNo').classList.remove('hidden-section');
+        }
+    }
+
+    // টয়লেট অপশন চেক করা (ধরণ ও ছবি আপলোডের জন্য)
+    function toggleToiletDetails(hasToilet) {
+        toggleVis('toiletTypeSection', hasToilet);
+        
+        const imageBlock = document.getElementById('toiletImageBlock');
+        if(hasToilet) {
+            imageBlock.classList.remove('hidden-section');
+            imageBlock.style.display = 'block'; 
+        } else {
+            imageBlock.classList.add('hidden-section');
+            imageBlock.style.display = 'none';
+        }
+    }
+
+    // স্বর্ণ ও রৌপ্যের দাম ডায়নামিকভাবে পরিবর্তন
+    function updateGoldPrice() {
+        const carat = document.getElementById('goldCarat').value;
+        const priceBox = document.getElementById('goldPrice');
+        // আনুমানিক মূল্য (আপনার প্রয়োজন অনুযায়ী পরিবর্তন করতে পারবেন)
+        const prices = {'24': '৮৫০০/-', '22': '৮০০০/-', '21': '৭৫০০/-', '18': '৬৫০০/-'};
+        
+        if(carat && prices[carat]) {
+            priceBox.value = `প্রতি 'আনা': ${prices[carat]}`;
+        } else {
+            priceBox.value = "প্রতি 'আনা' বাজারমূল্য";
+        }
+    }
+
+    function updateSilverPrice() {
+        const carat = document.getElementById('silverCarat').value;
+        const priceBox = document.getElementById('silverPrice');
+        // আনুমানিক মূল্য (আপনার প্রয়োজন অনুযায়ী পরিবর্তন করতে পারবেন)
+        const prices = {'24': '১৬০/-', '22': '১৫০/-', '21': '১৪০/-', '18': '১২০/-'};
+        
+        if(carat && prices[carat]) {
+            priceBox.value = `প্রতি 'আনা': ${prices[carat]}`;
+        } else {
+            priceBox.value = "প্রতি 'আনা' বাজারমূল্য";
         }
     }
 
